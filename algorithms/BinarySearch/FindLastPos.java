@@ -1,6 +1,6 @@
 // Find last index, nums[index] < target
-// nums[] all distinct values
-//        not distinct values
+// nums[] all distinct values  return mid - 1;
+//        not distinct values  start = mid;
 
 public class FindLastPos {
     private int findLastSmallerThanTarget(int[] nums, int target) {
@@ -12,7 +12,7 @@ public class FindLastPos {
         while(start + 1 < end) {
             int mid = start + (end - start)/2;
             if(nums[mid] == target) {
-                start = mid;
+                end = mid;
             }
             else if(nums[mid] < target) {
                 start = mid;
@@ -21,23 +21,19 @@ public class FindLastPos {
                 end = mid;
             }
         }
-        if(nums[end] < target) {
+
+        if (nums[end] < target) {
             return end;
         }
-        else if(nums[end] == target) {
-            return end - 1;
-        }
-        else if(nums[start] < target) {
+        if (nums[start] < target) {
             return start;
         }
-        else if(nums[start] == target) {
-            return start - 1;
-        }
+        return start - 1;
     }
 
     public static void main(String args[]) {
-        int[] nums = new int[] {1, 1, 3, 3, 4, 5, 6};
-        int target = 5;
+        int[] nums = new int[] {1, 1, 3, 3, 4, 5, 5, 6};
+        int target = 0;
         FindLastPos s = new FindLastPos();
         System.out.println(s.findLastSmallerThanTarget(nums, target));
     }
