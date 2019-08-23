@@ -1,91 +1,77 @@
 public class SearchA2DMatrix {
-    public boolean searchMatrix(int[][] matrix, int target) {
+    private boolean searchMatrix(int[][] matrix, int target) {
         if(matrix == null || matrix.length == 0) {
             return false;
         }
-        if(matrix[0][0] > target || target > matrix[matrix.length - 1][matrix[0].length - 1]) {
+        if(matrix[0] == null || matrix[0].length == 0) {
             return false;
         }
-        if(matrix.length == 1) {
-            return searchMatrixRow(matrix[0], target);
-        }
 
-        int start = 0, end = matrix.length - 1;
+        int row = matrix.length;
+        int column = matrix[0].length;
+        int start = 0, end = row * column - 1;
         while(start + 1 < end) {
             int mid = start + (end - start)/2;
-            if(matrix[mid][0] == target) {
+            int number = matrix[mid/column][mid%column];
+            if(number == target) {
                 return true;
             }
-            else if(matrix[mid][0] > target) {
+            else if(number > target) {
                 end = mid;
             }
-            else if(matrix[mid][0] < target){
+            else if(number < target){
                 start = mid;
             }
         }
 
-        int targetRow = -1;
-        if(matrix[start][0] == target) {
+        if(matrix[start/column][start%column] == target) {
             return true;
         }
-        else if(matrix[start][0] > target) {
-            targetRow = start - 1;
-            if(targetRow < 0) {
-                return false;
-            }
-            else {
-                return searchMatrixRow(matrix[targetRow], target);
-            }
-        }
-        else if(matrix[end][0] == target) {
+        else if(matrix[end/column][end%column] == target) {
             return true;
-        }
-        else if(matrix[end][0] > target) {
-            
-            targetRow = end - 1;
-            return searchMatrixRow(matrix[targetRow], target);
-        }
-        else if(target > matrix[end][0]) {
-            targetRow = end;
-            return searchMatrixRow(matrix[targetRow], target);
         }
         else {
             return false;
         }
     }
 
-    private boolean searchMatrixRow(int[] matrixRow, int target) {
-        if(matrixRow == null || matrixRow.length == 0) {
-            return false;
+    //O(m+n) time and O(1) extra space
+    /**
+     * @param matrix: A list of lists of integers
+     * @param target: An integer you want to search in matrix
+     * @return: An integer indicate the total occurrence of target in the given matrix
+     */
+    private int searchMatrix2(int[][] matrix, int target) {
+        if(matrix == null || matrix.length == 0) {
+            return 0;
+        }
+        if(matrix[0] == null || matrix[0].length == 0) {
+            return 0;
         }
 
-        int start = 0, end = matrixRow.length - 1;
-        while(start + 1 < end) {
-            int mid = start + (end - start)/2;
-            if(matrixRow[mid] == target) {
-                return true;
+        int row = matrix.length, column = matrix[0].length,
+         x = row - 1, y = 0, count = 0;
+        
+        while(x >= 0 && y < column) {
+            if(matrix[x][y] < target) {
+                y++;
             }
-            else if(matrixRow[mid] > target) {
-                end = mid;
-            } 
-            else if(matrixRow[mid] < target ) {
-                start = mid;
+            else if(matrix[x][y] > target) {
+                x--;
+            }
+            else{
+                count++;
+                x--;
+                y++;
             }
         }
-
-        if(matrixRow[start] == target) {
-            return true;
-        }
-        if (matrixRow[end] == target) {
-            return true;
-        }
-        return false;
+        return count;
     }
 
     public static void main(String[] args) {
-        int[][] matrix = {null, {1, 4, 5}, {6, 7, 8}};
+        int[][] matrix = {{1, 1, 4, 5}, {6, 6, 7, 8}};
         SearchA2DMatrix s = new SearchA2DMatrix();
-        boolean result = s.searchMatrix(matrix, 8);
+        int result = s.searchMatrix2(matrix, 8);
         System.out.println(result);
     }
 }
