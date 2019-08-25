@@ -6,7 +6,7 @@
  * the kth code version is bad or not.
 */
 // Find first bad = true
-class FirstBadVersion {
+public class FirstBadVersion {
     public int findFirstBadVersion(int n) {
         int start = 1, end = n;
         while(start + 1 < end) {
