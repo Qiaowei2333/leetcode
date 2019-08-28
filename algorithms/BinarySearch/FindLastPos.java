@@ -32,7 +32,7 @@ public class FindLastPos {
     }
 
     public static void main(String args[]) {
-        int[] nums = new int[] {1, 1, 3, 3, 4, 5, 5, 6};
+        int[] nums = new int[] {1, 1, 1, 1, 1, 1};
         int target = 0;
         FindLastPos s = new FindLastPos();
         System.out.println(s.findLastSmallerThanTarget(nums, target));
