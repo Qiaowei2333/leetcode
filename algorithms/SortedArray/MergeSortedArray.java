@@ -1,4 +1,4 @@
-// lint64
+// lint6
 
 public class MergeSortedArray {
     public int[] mergeSortedArray(int[] A, int[] B) {
@@ -8,7 +8,7 @@ public class MergeSortedArray {
 
         int index = 0, i = 0, j = 0;
         int[] result = new int[A.length + B.length];
-        
+
         while(i < A.length && j < B.length) {
             if(A[i] < B[j]) {
                 result[index++] = A[i++];
