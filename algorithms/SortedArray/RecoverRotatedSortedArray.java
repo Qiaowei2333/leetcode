@@ -23,8 +23,16 @@ public class RecoverRotatedSortedArray {
 
     public static void main(String[] args) {
         List<Integer> nums = new ArrayList<Integer>(Arrays.asList(3, 4, 5, 1, 2));
+
+        List<Integer> linkedList = new LinkedList<Integer>();
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+        linkedList.add(1);
+        linkedList.add(2);
+
         RecoverRotatedSortedArray s = new RecoverRotatedSortedArray();
-        s.recoverRotatedSortedArray(nums);
-        System.out.println(nums);
+        s.recoverRotatedSortedArray(linkedList);
+        System.out.println(linkedList);
     }
 }
