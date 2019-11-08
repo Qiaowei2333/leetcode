@@ -1,4 +1,5 @@
 // https://www.youtube.com/watch?v=9ZNky1wqNUw 花花酱解释
+// time: O(n)   Space: O(h)  h is the height of the tree
 public class BinaryTreeMaximumPathSum {
     static class TreeNode {
         int val;
