@@ -1,4 +1,4 @@
-public class MaximumDepthOfBinaryTreeDivConq{
+public class MaximumDepthOfBinaryTreeDivConq {
     static class TreeNode {
         int val;
         TreeNode left;
