@@ -26,6 +26,22 @@ public class PreOrderTraversal {
         traverse(root.right, result);
     }
 
+    // divide and conquer
+    public ArrayList<Integer> preOrderTraversalDivConq(TreeNode root) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        if (root == null) {
+            return result;
+        }
+
+        ArrayList<Integer> leftResult = preOrderTraversalDivConq(root.left);
+        ArrayList<Integer> rightResult = preOrderTraversalDivConq(root.right);
+
+        result.add(root.val);
+        result.addAll(leftResult);
+        result.addAll(rightResult);
+        return result;
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         TreeNode root2 = new TreeNode(2);
