@@ -1,5 +1,6 @@
 // lint88
 // https://www.youtube.com/watch?v=13m9ZCB8gjw
+// time O(n)
 public class LowestCommonAncestorOfBinaryTree {
     static class TreeNode {
         public int val;
