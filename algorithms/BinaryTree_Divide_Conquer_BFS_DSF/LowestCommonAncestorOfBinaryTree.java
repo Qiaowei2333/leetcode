@@ -1,4 +1,6 @@
 // lint88
+// https://www.youtube.com/watch?v=13m9ZCB8gjw
+// time O(n)
 public class LowestCommonAncestorOfBinaryTree {
     static class TreeNode {
         public int val;
@@ -9,15 +11,10 @@ public class LowestCommonAncestorOfBinaryTree {
         }
     }
 
-    /*
-     * @param root: The root of the binary search tree.
-     * 
-     * @param A: A TreeNode in a Binary.
-     * 
-     * @param B: A TreeNode in a Binary.
-     * 
-     * @return: Return the least common ancestor(LCA) of the two nodes.
-     */
+// 1. root.left 的LCA 存在并且 root.right的LCA存在， 返回root
+// 2. root.left 的LCA 和 root.right的LCA只有一个存在，返回存在的那一个
+// 3. root.left 的LCA 和 root.right的LCA都不存在， 返回null
+// 4. 注意root本身是p或者q时，root自己就是LCA的结果，直接返回
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
@@ -28,6 +25,10 @@ public class LowestCommonAncestorOfBinaryTree {
 
         if (left != null && right != null) {
             return root;
+        }
+
+        if (left == null && right == null) {
+            return null;
         }
 
         return left == null ? right : left;
