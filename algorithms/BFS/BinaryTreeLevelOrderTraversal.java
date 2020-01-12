@@ -1,4 +1,4 @@
-// lint 69
+// lint 69 BFS template
 import java.util.*;
 
 public class BinaryTreeLevelOrderTraversal {
