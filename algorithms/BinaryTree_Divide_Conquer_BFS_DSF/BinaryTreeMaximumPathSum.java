@@ -26,7 +26,7 @@ public class BinaryTreeMaximumPathSum {
         int left = Math.max(0, maxPathDown(root.left));
         int right = Math.max(0, maxPathDown(root.right));
 
-        maxValue = Math.max(maxValue, left + right + root.val); // 把这一句去掉， 就是find a path including current node with max sum
+        maxValue = Math.max(maxValue, left + right + root.val); // 把这一句去掉， 就是find a path from current node to some node (including current node) with max sum
                                                                 // 这就是 maxPathDown 的含义
         return Math.max(left, right) + root.val;
     }
