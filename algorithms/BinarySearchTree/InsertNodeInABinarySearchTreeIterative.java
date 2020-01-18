@@ -1,5 +1,5 @@
-// lint 85 recursive
-public class InsertNodeInABinarySearchTree{
+// lint 85 Iterative
+public class InsertNodeInABinarySearchTreeIterative{
     static class TreeNode {
         int val;
         TreeNode left;
@@ -14,19 +14,31 @@ public class InsertNodeInABinarySearchTree{
         if (root == null) {
             return node;
         }
-
-        if (root.val > node.val) {
-            root.left = insertNode(root.left, node);
+        TreeNode curr = root;
+        while (true) {
+            if (curr.val > node.val) {
+                if (curr.left != null) {
+                    curr = curr.left;
+                }
+                else {
+                    curr.left = node;
+                    break;
+                }
+            } 
+            else {
+                if (curr.right != null) {
+                    curr = curr.right;
+                }
+                else {
+                    curr.right = node;
+                    break;
+                }
+            }
         }
-
-        if (root.val < node.val) {
-            root.right = insertNode(root.right, node);
-        }
-
         return root;
     }
     public static void main(String[] args) {
-        InsertNodeInABinarySearchTree s = new InsertNodeInABinarySearchTree();
+        InsertNodeInABinarySearchTreeIterative s = new InsertNodeInABinarySearchTreeIterative();
         TreeNode node1 = new TreeNode(7);
         TreeNode node2 = new TreeNode(3);
         TreeNode node3 = new TreeNode(11);
