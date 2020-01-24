@@ -1,4 +1,4 @@
-// lt450
+// lt450 https://www.youtube.com/watch?v=00r9qf7lgAk
 import java.util.*;
 
 public class DeleteNodeFromBST {
@@ -12,6 +12,7 @@ public class DeleteNodeFromBST {
         }
     }
 
+    // change value, not node
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) {
             return null;
@@ -36,6 +37,38 @@ public class DeleteNodeFromBST {
         return root;
     }
 
+    // remove node
+    public TreeNode deleteNode1(TreeNode root, int key) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.val > key) {
+            root.left = deleteNode1(root.left, key);
+        } else if (root.val < key) {
+            root.right = deleteNode1(root.right, key);
+        } else {
+            if (root.left == null) {
+                root = root.right;
+            } else if (root.right == null) {
+                root = root.left;
+            } else {
+                TreeNode parent = root;
+                TreeNode newRoot = root.right;
+                while (newRoot.left != null) {
+                    parent = newRoot;
+                    newRoot = newRoot.left;
+                }
+                if (parent != root) {
+                    parent.left = newRoot.right;
+                    newRoot.right = root.right;
+                }
+                newRoot.left = root.left;
+                root = newRoot;
+            }
+        }
+        return root;
+    }
     public static void main(String[] args) {
         TreeNode node5 = new TreeNode(5);
         TreeNode node3 = new TreeNode(3);
