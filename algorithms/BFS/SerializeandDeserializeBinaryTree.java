@@ -11,13 +11,9 @@ public class SerializeandDeserializeBinaryTree {
             val = x;
         }
     }
-    /**
-     * This method will be invoked first, you should design your own algorithm to
-     * serialize a binary tree which denote by a root node to a string which can be
-     * easily deserialized by your own "deserialize" method later.
-     */
+    // use arraylist as queue, trim #s in the end
     // return {1,2,3,#,#,4,5}
-    public String serialize(TreeNode root) {
+    public String serialize1(TreeNode root) {
         if (root == null) {
             return "{}";
         }
@@ -51,41 +47,8 @@ public class SerializeandDeserializeBinaryTree {
         sb.delete(queue.size() - 1, queue.size());
         return sb.toString();
     }
-
-    // // return {1,2,3,#,#,4,5,#,#,#,#}
-    // public String serialize(TreeNode root) {
-    //     if (root == null) {
-    //         return "{}";
-    //     }
-    //     Queue<TreeNode> queue = new LinkedList<TreeNode>();
-    //     queue.offer(root);
-
-    //     while (!queue.isEmpty()) {
-    //         TreeNode head = queue.poll();
-    //         if (head == null) {
-    //             sb.append("#");
-    //         } else {
-    //             sb.append(head.val);
-    //             queue.offer(head.left);
-    //             queue.offer(head.right);
-    //         }
-
-    //         if (!queue.isEmpty()) {
-    //             sb.append(",");
-    //         }
-    //     }
-    //     sb.append("}");
-    //     System.out.println(sb);
-    //     return sb.toString();
-    }
-    /**
-     * This method will be invoked second, the argument data is what exactly you
-     * serialized at method "serialize", that means the data is not given by system,
-     * it's given by your own serialize method. So the format of data is designed by
-     * yourself, and deserialize it here as you serialize it in "serialize" method.
-     */
     // input {1,2,3,#,#,4,5}
-    public TreeNode deserialize(String data) {
+    public TreeNode deserialize1(String data) {
         // write your code here
         if (data.equals("{}")) {
             return null;
@@ -117,4 +80,35 @@ public class SerializeandDeserializeBinaryTree {
         }
         return root;
     }
+
+
+
+
+    // // return {1,2,3,#,#,4,5,#,#,#,#}
+    // public String serialize(TreeNode root) {
+    //     if (root == null) {
+    //         return "{}";
+    //     }
+    //     Queue<TreeNode> queue = new LinkedList<TreeNode>();
+    //     queue.offer(root);
+
+    //     while (!queue.isEmpty()) {
+    //         TreeNode head = queue.poll();
+    //         if (head == null) {
+    //             sb.append("#");
+    //         } else {
+    //             sb.append(head.val);
+    //             queue.offer(head.left);
+    //             queue.offer(head.right);
+    //         }
+
+    //         if (!queue.isEmpty()) {
+    //             sb.append(",");
+    //         }
+    //     }
+    //     sb.append("}");
+    //     System.out.println(sb);
+    //     return sb.toString();
+    }
+
 }
