@@ -81,8 +81,38 @@ public class SerializeandDeserializeBinaryTree {
         return root;
     }
     
+    // use arraylist as queue
+    // return {1,2,3,#,#,4,5,#,#,#,#}
+    public String serialize2(TreeNode root) {
+        if (root == null) {
+            return "{}";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
+        queue.add(root);
+
+        for (int i = 0; i < queue.size(); i++) {
+            TreeNode node = queue.get(i);
+            if (node != null) {
+                queue.add(node.left);
+                queue.add(node.right);
+                sb.append(node.val);
+            } else {
+                sb.append("#");
+            }
+            sb.append(",");
+        }
+
+        sb.delete(sb.length() - 1, sb.length());
+        sb.append("}");
+        return sb.toString();
+    }
+
+
     // use queue
-    // // return {1,2,3,#,#,4,5,#,#,#,#}
+    // return {1,2,3,#,#,4,5,#,#,#,#}
     public String serialize(TreeNode root) {
         if (root == null) {
             return "{}";
