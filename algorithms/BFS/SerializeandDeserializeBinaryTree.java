@@ -1,4 +1,4 @@
-// lt 7
+// leetcode 297 https://www.youtube.com/watch?v=JL4OjKV_pGE&t=38s
 import java.util.*;
 
 public class SerializeandDeserializeBinaryTree {
@@ -16,21 +16,105 @@ public class SerializeandDeserializeBinaryTree {
      * serialize a binary tree which denote by a root node to a string which can be
      * easily deserialized by your own "deserialize" method later.
      */
+    // return {1,2,3,#,#,4,5}
     public String serialize(TreeNode root) {
         if (root == null) {
             return "{}";
         }
 
-        
+        ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
+        queue.add(root);
+
+        for (int i = 0; i < queue.size(); i++) {
+            TreeNode cur = queue.get(i);
+            if (cur == null) {
+                continue;
+            }
+            queue.add(cur.left);
+            queue.add(cur.right);
+        }
+
+        while (queue.get(queue.size() - 1) == null) {
+            queue.remove(queue.size() - 1);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < queue.size(); i++) {
+            if (queue.get(i) == null) {
+                sb.append("#");
+            } else {
+                sb.append(queue.get(i).val);
+            }
+
+            sb.append(",");
+        }
+        sb.delete(queue.size() - 1, queue.size());
+        return sb.toString();
     }
 
+    // // return {1,2,3,#,#,4,5,#,#,#,#}
+    // public String serialize(TreeNode root) {
+    //     if (root == null) {
+    //         return "{}";
+    //     }
+    //     Queue<TreeNode> queue = new LinkedList<TreeNode>();
+    //     queue.offer(root);
+
+    //     while (!queue.isEmpty()) {
+    //         TreeNode head = queue.poll();
+    //         if (head == null) {
+    //             sb.append("#");
+    //         } else {
+    //             sb.append(head.val);
+    //             queue.offer(head.left);
+    //             queue.offer(head.right);
+    //         }
+
+    //         if (!queue.isEmpty()) {
+    //             sb.append(",");
+    //         }
+    //     }
+    //     sb.append("}");
+    //     System.out.println(sb);
+    //     return sb.toString();
+    }
     /**
      * This method will be invoked second, the argument data is what exactly you
      * serialized at method "serialize", that means the data is not given by system,
      * it's given by your own serialize method. So the format of data is designed by
      * yourself, and deserialize it here as you serialize it in "serialize" method.
      */
+    // input {1,2,3,#,#,4,5}
     public TreeNode deserialize(String data) {
         // write your code here
+        if (data.equals("{}")) {
+            return null;
+        }
+
+        String[] vals = data.substring(1, data.length() - 1).split(",");
+        ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
+        TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
+        queue.add(root);
+        int index = 0;
+        boolean isLeft = true;
+        for (int i = 1; i < vals.length; i++) {
+            String curVal = vals[i];
+            if (!curVal.equals("#")) {
+                TreeNode curNode = queue.get(index);
+                if (isLeft) {
+                    curNode.left = new TreeNode(Integer.parseInt(curVal));
+                    queue.add(curNode.left);
+                } else {
+                    curNode.right = new TreeNode(Integer.parseInt(curVal));
+                    queue.add(curNode.right);
+                }
+            }
+            System.out.println(index);
+            if (!isLeft) {
+                index++;
+            }
+            isLeft = !isLeft;
+        }
+        return root;
     }
 }
