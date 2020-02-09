@@ -80,35 +80,63 @@ public class SerializeandDeserializeBinaryTree {
         }
         return root;
     }
-
-
-
-
+    
+    // use queue
     // // return {1,2,3,#,#,4,5,#,#,#,#}
-    // public String serialize(TreeNode root) {
-    //     if (root == null) {
-    //         return "{}";
-    //     }
-    //     Queue<TreeNode> queue = new LinkedList<TreeNode>();
-    //     queue.offer(root);
+    public String serialize(TreeNode root) {
+        if (root == null) {
+            return "{}";
+        }
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);
 
-    //     while (!queue.isEmpty()) {
-    //         TreeNode head = queue.poll();
-    //         if (head == null) {
-    //             sb.append("#");
-    //         } else {
-    //             sb.append(head.val);
-    //             queue.offer(head.left);
-    //             queue.offer(head.right);
-    //         }
+        while (!queue.isEmpty()) {
+            TreeNode head = queue.poll();
+            if (head == null) {
+                sb.append("#");
+            } else {
+                sb.append(head.val);
+                queue.offer(head.left);
+                queue.offer(head.right);
+            }
 
-    //         if (!queue.isEmpty()) {
-    //             sb.append(",");
-    //         }
-    //     }
-    //     sb.append("}");
-    //     System.out.println(sb);
-    //     return sb.toString();
+            if (!queue.isEmpty()) {
+                sb.append(",");
+            }
+        }
+        sb.append("}");
+        System.out.println(sb);
+        return sb.toString();
     }
+    
+    // use linkedlist as queue
+    // input string {1,2,3,#,#,4,5,#,#,#,#}
+    public TreeNode deserialize(String data) {
+        if (data == null || data.equals("{}")) {
+            return null;
+        }
 
+        String[] vals = data.substring(1, data.length() - 1).split(",");
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
+        queue.offer(root);
+        boolean isLeftChild = true;
+        for (int i = 1; i < vals.length; i++) {
+            String curVal = vals[i];
+            if (!curVal.equals("#")) {
+                TreeNode child = new TreeNode(Integer.parseInt(curVal));
+                if (isLeftChild) {
+                    queue.peek().left = child;
+                } else {
+                    queue.peek().left = child;
+                }
+                queue.offer(child);
+            }
+            if (!isLeftChild) {
+                queue.poll();
+            }
+            isLeftChild = !isLeftChild;
+        }
+        return root;
+    }
 }
