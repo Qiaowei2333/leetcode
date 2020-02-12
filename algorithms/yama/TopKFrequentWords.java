@@ -2,7 +2,7 @@
 import java.util.*;
 public class TopKFrequentWords {
     public List<String> topKFrequent(String[] words, int k) {
-        List<String> result = new ArrayList<>();
+        List<String> result = new LinkedList<>();
         Map<String, Integer> map = new HashMap<>();
         for (String word : words) {
             map.put(word, map.getOrDefault(word, 0) + 1);
@@ -10,22 +10,21 @@ public class TopKFrequentWords {
         
         PriorityQueue<Map.Entry<String, Integer>> queue = new PriorityQueue<>((a, b) -> {
             if (a.getValue() == b.getValue()) {
-                return a.getKey().compareTo(b.getKey());
+                return b.getKey().compareTo(a.getKey());
             } else {
-                return b.getValue() - a.getValue();
+                return a.getValue() - b.getValue();
             }
         });
         
         for (Map.Entry<String, Integer> entry: map.entrySet()) {
             queue.offer(entry);
-            // if (queue.size() > k) {
-            //     queue.poll();
-            // }
+            if (queue.size() > k) {
+                queue.poll();
+            }
         }
-        int i = 0;
-        while (!queue.isEmpty() && i < k) {
-            result.add(queue.poll().getKey());
-            i++;
+
+        while (!queue.isEmpty()) {
+            result.add(0, queue.poll().getKey());
         }
 
         return result;
