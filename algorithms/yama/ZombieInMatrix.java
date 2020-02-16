@@ -1,4 +1,4 @@
-// 
+//yama oa time complex O(row*col)
 import java.util.*;
 public class ZombieInMatrix {
 
