@@ -21,7 +21,7 @@
 // elsa - 4
 // "elmo" should be placed before "elsa" in the result because "elmo" appears in 3 different quotes and "elsa" appears in 2 different quotes.
 // 
-// time complex O(numToys*logtopToys)
+// time complex O(numToys*logtopToys)  space O(n)
 import java.util.*;
 public class TopNBuzzwords {
     private static List<String> topNBuzzwords(int numToys, int topToys, String[] toys, int numQuotes, String[] quotes) {

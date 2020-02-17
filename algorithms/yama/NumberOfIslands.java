@@ -1,4 +1,5 @@
 // lt 200 time complex O(row*col)
+// space O(min(row, col))
 import java.util.*;
 public class NumberOfIslands {
     static class Coordinate {
