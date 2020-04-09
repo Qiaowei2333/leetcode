@@ -34,9 +34,18 @@ public class BinarySearch {
     }
 
     public static void main(String[] args){
-        int[] nums = new int[]{1, 2, 2, 3, 3, 3, 4};
-        BinarySearch bs = new BinarySearch();
-        int targetIndex = bs.binarySearch(nums, 2);
-        System.out.println(targetIndex);
+        // int[] nums = new int[]{1, 2, 2, 3, 3, 3, 4};
+        // BinarySearch bs = new BinarySearch();
+        // int targetIndex = bs.binarySearch(nums, 2);
+        Map<Integer, ArrayList<Integer>> mapToEdges = new HashMap<>();
+        mapToEdges.put(0, new ArrayList<Integer>());
+        mapToEdges.get(0).add(1);
+        int[] a = new int[]{1, 2};
+        List<List> edges = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            edges.add(0, new ArrayList<>());
+        }
+        int[][] aqqq = {{1, 2, 3},{3, 4, 5}};
+        System.out.println(edges.size());
     }
 }
