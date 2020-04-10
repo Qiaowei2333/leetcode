@@ -15,11 +15,11 @@ class Subset {
                                int pos) {
         result.add(new ArrayList<Integer>(list));
         for(int i = pos; i < nums.length; i++) {
-            if(i != pos && nums[i] == nums[i-1]) {
+            if(i != pos && nums[i] == nums[i - 1]) {
                 continue;
             }
             list.add(nums[i]);
-            subsetsHelper(result, list, nums, i+1);
+            subsetsHelper(result, list, nums, i + 1);
             list.remove(list.size() - 1);
         }
 
