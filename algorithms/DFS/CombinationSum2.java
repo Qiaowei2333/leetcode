@@ -1,6 +1,6 @@
-//lin 135
+//lin 153
 import java.util.*;
-public class CombinationSum {
+public class CombinationSum2 {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
         if (candidates == null || candidates.length == 0) {
@@ -22,18 +22,17 @@ public class CombinationSum {
             if (remainTarget < candidates[i]) {
                 break;
             }
-            // if candididates[] not includes any duplicate integers, comment out code below
-            // if (i != pos && candidates[i] == candidates[i - 1 ]) {
-            //     continue;
-            // }
+            if (i != pos && candidates[i] == candidates[i - 1 ]) {
+                continue;
+            }
             list.add(candidates[i]);
-            recursionHelper(result, list, remainTarget - candidates[i], candidates, i);
+            recursionHelper(result, list, remainTarget - candidates[i], candidates, i + 1);
             list.remove(list.size() - 1);
         }
     }       
 
     public static void main(String[] args) {
-        CombinationSum s = new CombinationSum();
+        CombinationSum2 s = new CombinationSum2();
         int[] candidates = new int[]{2, 3, 6, 7};
         List<List<Integer>> result = s.combinationSum(candidates, 7);
         System.out.println(result);
