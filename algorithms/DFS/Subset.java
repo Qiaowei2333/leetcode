@@ -19,6 +19,7 @@ class Subset {
                 continue;
             }
             list.add(nums[i]);
+            // 含义： nums[i]已经选的情况下，从nums[i + 1]开始直到结束，的所有子集
             subsetsHelper(result, list, nums, i + 1);
             list.remove(list.size() - 1);
         }
