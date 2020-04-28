@@ -1,6 +1,24 @@
 import java.util.Stack;
 
 class Solution206 {
+    static class ListNode { 
+        int val; 
+        ListNode next; 
+        ListNode(int x) { val = x; } 
+    }
+
+    // Better solution
+    public ListNode reverseList1(ListNode head) {
+        ListNode pre = null;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+
     //  solution:     https://leetcode.com/problems/reverse-linked-list/discuss/58125/In-place-iterative-and-recursive-Java-solution
     public static ListNode reverseList(ListNode head) {
         if(head == null) return null;
@@ -13,10 +31,11 @@ class Solution206 {
         while(st.size() != 1) {
             head = st.pop();
             head.next = st.peek();
-            st.peek().next = null;
         }
+        st.peek().next = null;
         return result;
     }
+
     
     public static void main(String[] args) throws Exception {
         ListNode l1 = new ListNode(1);
@@ -31,10 +50,4 @@ class Solution206 {
         }
         
     }
-}
-
-class ListNode { 
-    int val; 
-    ListNode next; 
-    ListNode(int x) { val = x; } 
 }
