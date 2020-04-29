@@ -1,4 +1,4 @@
-// lt 937
+// lt 937 
 // 明白"1" < "A" < "a" 在 String 比较中
 // String比较是一位一位的比，比到有差就结束
 // 如"echo" compareTo "echmpppp" 比到 "o" 和 "m" 结束了，顺序为 "echmpppp", "echo", 因为 "m" < "o"  
