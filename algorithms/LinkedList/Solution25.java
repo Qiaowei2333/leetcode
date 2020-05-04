@@ -1,61 +1,84 @@
 import java.util.Stack;
 
 class Solution25 {
-    public ListNode reverseKGroup(ListNode head, int k) {
-        // // Solution by huahuajiang, swap without using any extra space
-        if(head == null) return null;
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode prev = dummy;
-        while(prev != null) {
-            prev = reverse(prev, k);
+    static class ListNode {
+        int val;
+        ListNode next;
+    
+        ListNode(int x) {
+            val = x;
         }
-        return dummy.next;
-
-
-
-        
-
-
-
-        // //SOLUTION using stack to solve, need more space, not optimal
-        // if(head == null) return null;
-        // ListNode dummy = new ListNode(-1);
-        // dummy.next = head;
-        // ListNode cur = dummy;
-        // ListNode next = dummy.next;;
-        // Stack<ListNode> st = new Stack<ListNode>();
-        // while(next != null) {
-        //     for(int i = 0; i < k && next != null; i++) {
-        //         st.push(next);
-        //         next = next.next;
-        //     }
-        //     if(st.size() < k) return dummy.next;
-        //     while(st.size() != 0) {
-        //         cur.next = st.pop();
-        //         cur = cur.next;
-        //     }
-        //     cur.next = next;
-        // }
-        // return dummy.next;
     }
 
-    public ListNode reverse(ListNode pre, int k) {
-        ListNode last = pre;
-        for(int i = 0; i < k+1; i++) {
-            last = last.next;
-            if(last == null && i != k) return null;
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy; 
+        while (pre != null) {
+            pre = reverse(pre, k);
         }
-        ListNode tail = pre.next;
-        ListNode cur = pre.next.next;
-        while(cur != last) {
+        
+        return dummy.next;
+    }
+
+    // head -> n1 -> n2 ... nk -> nk+1
+    // =>
+    // head -> nk -> nk-1 .. n1 -> nk+1
+    // return n1
+    public ListNode reverse(ListNode head, int k) {
+        if (head == null) {
+            return null;
+        }
+
+        // find nk
+        ListNode nk = head;
+        for (int i = 0; i < k; i++) {
+            nk = nk.next;
+            if (nk == null) {
+                return null;
+            }
+        }
+
+        // 找到reverse 的起点终点
+        ListNode n1 = head.next;
+        ListNode nkplus = nk.next;
+
+        // 开始reverse
+        ListNode pre = null;
+        ListNode cur = n1;
+        while (cur != nkplus) {
             ListNode next = cur.next;
-            cur.next = pre.next;
-            pre.next = cur;
-            tail.next = next;
+            cur.next = pre;
+            pre = cur;
             cur = next;
         }
-        return tail;
+
+        head.next = nk;
+        n1.next = nkplus;
+
+        return n1;
+    }
+
+    public static ListNode reverseKGroupUseStack(ListNode head, int k) {
+        if(head == null) return null;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode cur = dummy;
+        ListNode next = dummy.next;;
+        Stack<ListNode> st = new Stack<ListNode>();
+        while(next != null) {
+            for(int i = 0; i < k && next != null; i++) {
+                st.push(next);
+                next = next.next;
+            }
+            if(st.size() < k) return dummy.next;
+            while(st.size() != 0) {
+                cur.next = st.pop();
+                cur = cur.next;
+            }
+            cur.next = next;
+        }
+        return dummy.next;
     }
 
     public static void main(String args[]) {
@@ -72,12 +95,3 @@ class Solution25 {
 
     }
  }
- 
- class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-} 
