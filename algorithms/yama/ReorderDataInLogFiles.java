@@ -31,7 +31,11 @@ public class ReorderDataInLogFiles {
                 return -1;
             }
         });
+
+        String[] nums = {"1", "2", "3"};
+        Arrays.sort(nums, (a, b) -> {return -1;});
         return logs;
+
     }
 
     // remove all spaces, compare all splits one by one

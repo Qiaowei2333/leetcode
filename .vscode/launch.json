@@ -2,6 +2,83 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - StockSystem",
+            "request": "launch",
+            "mainClass": "StockSystem",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CandyCrush",
+            "request": "launch",
+            "mainClass": "CandyCrush",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - LRUCache",
+            "request": "launch",
+            "mainClass": "LRUCache",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DecodeString",
+            "request": "launch",
+            "mainClass": "DecodeString",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TopKFrequentWords",
+            "request": "launch",
+            "mainClass": "TopKFrequentWords",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - UndergroundSystem",
+            "request": "launch",
+            "mainClass": "UndergroundSystem",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - InvalidTransactions",
+            "request": "launch",
+            "mainClass": "InvalidTransactions",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TwoDeductionLessThanK",
+            "request": "launch",
+            "mainClass": "TwoDeductionLessThanK",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Subset",
+            "request": "launch",
+            "mainClass": "Subset",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FlattenAMultilevelDoublyLinkedList",
+            "request": "launch",
+            "mainClass": "FlattenAMultilevelDoublyLinkedList",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SequenceNumber",
+            "request": "launch",
+            "mainClass": "SequenceNumber",
+            "projectName": "lt_6a923cd5"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Solution25",
             "request": "launch",
             "mainClass": "Solution25"
