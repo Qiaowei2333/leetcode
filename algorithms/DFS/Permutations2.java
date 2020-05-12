@@ -19,7 +19,10 @@ public class Permutations2 {
             return;
         }
         for (int i = 0; i < nums.length; i++) {
-            if (selected[i] || (i != 0 && nums[i] == nums[i - 1]) && selected[i - 1]) {
+            if (selected[i]) {
+                continue;
+            }
+            if ((i != 0 && nums[i] == nums[i - 1]) && !selected[i - 1]) {
                 continue;
             }
             list.add(nums[i]);
@@ -28,5 +31,12 @@ public class Permutations2 {
             list.remove(list.size() - 1);
             selected[i] = false;
         }
+    }
+
+    public static void main(String[] args) {
+        Permutations2 s = new Permutations2();
+        int[] nums = {1, 1, 1};
+        List<List<Integer>> result = s.permuteUnique(nums);
+        System.out.println(result);
     }
 }
