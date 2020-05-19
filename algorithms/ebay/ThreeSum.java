@@ -39,8 +39,10 @@ public class ThreeSum {
     }
 
     public static void main(String args[]) {
-        ThreeSum s = new ThreeSum();
-        List<List<Integer>> result = s.threeSum(new int[]{1, 2, 3});
-        System.out.println(result);
+        // ThreeSum s = new ThreeSum();
+        // List<List<Integer>> result = s.threeSum(new int[]{1, 2, 3});
+        // System.out.println(result);
+        System.out.println(Character.isLetter('#'));
+        System.out.println(Character.isLetter('5'));
     }
 }
