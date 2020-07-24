@@ -13,6 +13,10 @@ public class QuickSort {
         }
     }
 
+    // 这里取end 即最后一个数为pivot，因为取中点，中点可能已经被swap了，之后位置不确定 
+    // 假如取中点 pivot = start + (end - start) / 2, [5,1,1,2,0,0] partition之后 pivotValue = 1, pivotIndex = 2, 循环swap之后，数组[0 0 1 2 5 1]
+    // 原来在pivotIndex 2 的中点已经swap到最右去了，而程序并不知道
+    // 用最右好处是，最有没有被swap过，等我找到pviotIndex再swap过去
     private int partition(int[] nums, int start, int end) {
         int pivotValue = nums[end];
         int pivotIndex = start;

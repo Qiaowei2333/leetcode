@@ -1,4 +1,13 @@
 // leetcode 912
+// time O(nlogn)  space O(n)
+// 解释下 空间复杂度， 我一直以为是 O(nlogn), 因为假如 n=16
+//  level 0 数组占空间： 16
+//  level 1 所占空间： 8 + 8
+//  level 2 占空间： 4 + 4 + 4 + 4
+//  level 3：     2 + 2 + 2 + 2 + 2 + 2 + 2 + 2
+//  level 4: 1 1 1 1 1 1 1 1 1 1 1 1  1 1 1 1 1  1 1 1 1  1 1 1
+//  但是！ 程序递归不是同时parallel执行的， 是 16 -> 8 -> 4 -> 2 -> 1，再合并上去， 所以只占了 （1 + 1/2 + 1/4 + 1/ 8 ...）* n = 2n at most
+// 所有空间是O（n）
 public class MergeSort {
     public int[] mergeSort(int[] nums, int start, int end) {
         if (start == end) {
