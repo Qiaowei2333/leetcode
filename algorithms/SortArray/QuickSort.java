@@ -1,4 +1,5 @@
 // leetcode 912
+// time O(nlogn),  space O(1)
 public class QuickSort {
     public int[] quickSortArray(int[] nums) {
         quickSort(nums, 0, nums.length - 1);
