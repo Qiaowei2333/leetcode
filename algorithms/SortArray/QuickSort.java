@@ -1,5 +1,5 @@
 // leetcode 912
-// time O(nlogn),  space O(1)
+// avg time O(nlogn), worst O(n2),  space O(1)
 public class QuickSort {
     public int[] quickSortArray(int[] nums) {
         quickSort(nums, 0, nums.length - 1);
@@ -20,6 +20,10 @@ public class QuickSort {
     // 用最右好处是，最有没有被swap过，等我找到pviotIndex再swap过去
     private int partition(int[] nums, int start, int end) {
         int pivotValue = nums[end];
+        // remove line 22 with commented out area below to use mid value as pivot value
+        // int mid = start + (end - start) / 2;
+        // int pivotValue = nums[mid];
+        // swap(nums, mid, end);
         int pivotIndex = start;
         for (int i = start; i < end; i++) {
             if (nums[i] < pivotValue) {
