@@ -6,8 +6,21 @@ class Solution206 {
         ListNode next; 
         ListNode(int x) { val = x; } 
     }
+    // recursive
+    public ListNode reverseList2(ListNode head) {
+        /* recursive solution */
+        return reverseListInt(head, null);
+    }
 
-    // Better solution
+    private ListNode reverseListInt(ListNode head, ListNode pre) {
+        if (head == null)
+            return pre;
+        ListNode next = head.next;
+        head.next = pre;
+        return reverseListInt(next, head);
+    }
+
+    // iterative
     public ListNode reverseList1(ListNode head) {
         ListNode pre = null;
         while (head != null) {
