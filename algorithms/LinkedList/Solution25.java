@@ -10,6 +10,7 @@ class Solution25 {
         }
     }
 
+    // time O(n)   space O(1)
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
@@ -44,7 +45,7 @@ class Solution25 {
         ListNode nkplus = nk.next;
 
         // 开始reverse
-        ListNode pre = null;
+        ListNode pre = head;
         ListNode cur = n1;
         while (cur != nkplus) {
             ListNode next = cur.next;
@@ -77,6 +78,35 @@ class Solution25 {
                 cur = cur.next;
             }
             cur.next = next;
+        }
+        return dummy.next;
+    }
+
+    // use stack  time O(n), space O(k)
+    public ListNode reverseKGroup1(ListNode head, int k) {
+        Stack<ListNode> stack = new Stack<>();
+        ListNode next = head;
+        ListNode dummy = new ListNode(0);
+        ListNode pre = dummy;
+        dummy.next = head;
+        while (next != null) {
+            stack.push(next);
+            next = next.next;
+            if (stack.size() == k) {
+                while (!stack.isEmpty()) {
+                    pre.next = stack.pop();
+                    pre = pre.next;
+                }
+                pre.next = next;
+            }
+        }
+
+        if (stack.size() == k) {
+            while (!stack.isEmpty()) {
+                pre.next = stack.pop();
+                pre = pre.next;
+            }
+            pre.next = next;
         }
         return dummy.next;
     }
