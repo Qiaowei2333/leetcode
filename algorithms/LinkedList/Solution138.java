@@ -1,22 +1,26 @@
-import java.util.HashMap;
+import java.util.*;
 
 class Solution138 {
     public static Node copyRandomList(Node head) {
-        if(head == null) return head;
-        HashMap<Node, Node> map = new HashMap<Node, Node>();
-        Node tempHead = head;
-        while(head != null) {
-            Node newHead = new Node();
-            map.put(head, newHead);
-            head = head.next;
+        if (head == null) {
+            return null;
         }
-        Node result = map.get(tempHead);
-        while(tempHead != null) {
-            Node newHead = map.get(tempHead);
-            newHead.val = tempHead.val;
-            newHead.next = map.get(tempHead.next);
-            newHead.random = map.get(tempHead.random);
-            tempHead = tempHead.next;
+        Node cur = head;
+        Map<Node, Node> map = new HashMap<>();
+        while (cur != null) {
+            Node newCur = new Node(cur.val);
+            map.put(cur, newCur);
+            cur = cur.next;
+        }
+        Node result = map.get(head);
+        cur = head;
+        while (cur != null) {
+            Node next = cur.next;
+            Node random = cur.random;
+            Node newCur = map.get(cur);
+            newCur.next = map.get(next);
+            newCur.random = map.get(random);
+            cur = cur.next;
         }
         return result;
     }
@@ -43,9 +47,9 @@ class Node {
 
     public Node() {}
 
-    public Node(int _val,Node _next,Node _random) {
-        val = _val;
-        next = _next;
-        random = _random;
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
     }
 }
