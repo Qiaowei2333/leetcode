@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-class Solution206 {
+class ReverseLinkedList {
     static class ListNode { 
         int val; 
         ListNode next; 
