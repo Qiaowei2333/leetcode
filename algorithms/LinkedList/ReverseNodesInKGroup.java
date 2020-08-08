@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-class Solution25 {
+class ReverseNodesInKGroup {
     static class ListNode {
         int val;
         ListNode next;
@@ -117,7 +117,7 @@ class Solution25 {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
 
-        Solution25 s = new Solution25();
+        ReverseNodesInKGroup s = new ReverseNodesInKGroup();
         ListNode result = s.reverseKGroup(head, 3);
         for (; result != null; result = result.next) {
             System.out.println(result.val);
