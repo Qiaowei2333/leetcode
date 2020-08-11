@@ -1,5 +1,6 @@
 // lc 24 
 public class SwapNodesInPairs {
+    // iterative
     public ListNode swapPairs(ListNode head) {
         if (head == null || head.next == null) {
             return head;
@@ -27,6 +28,19 @@ public class SwapNodesInPairs {
             count++;
         }
         return dummy.next;
+    }
+
+    // recursive
+    public ListNode swapPairs1(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        } 
+        
+        ListNode nextHead = head.next.next;
+        head.next.next = head;
+        ListNode next = head.next;
+        head.next = swapPairs(nextHead);
+        return next;
     }
 
     static class ListNode { 
