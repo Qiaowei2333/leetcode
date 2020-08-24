@@ -1,4 +1,4 @@
-// lin65 sort two arrays first
+// lc4 merge two sorted array then find median, time O(m + n), space O(m + n)
 public class MedianOfTwoSortedArray {
     public double findMedianSortedArrays(int[] A, int[] B) {
         int[] newArray = new int[A.length + B.length];
