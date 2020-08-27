@@ -2,6 +2,21 @@
 // time O(nlogn), space O(n)
 import java.util.*;
 public class ProductOfArrayExceptSelf {
+    public int[] productExceptSelf(int[] nums) {
+        int[] left = new int[nums.length];
+        left[0] = 1;
+        for (int i = 1; i < nums.length; i++) {
+            left[i] = left[i - 1] * nums[i - 1];
+        }
+        
+        int right = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            left[i] *= right; 
+            right *= nums[i];
+        }
+        return left;
+    }
+    // 这答案好像是别的题目都
     public int[][] merge(int[][] intervals) {
         if (intervals == null || intervals.length == 0 || intervals[0].length == 0) {
             return intervals;
