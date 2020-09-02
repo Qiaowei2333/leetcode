@@ -19,7 +19,7 @@ public class BinarySearch2 {
             }
         }
 
-        if (nums[start] == target) {
+        if (start < nums.length && nums[start] == target) {
             return start;
         }
 
@@ -27,7 +27,7 @@ public class BinarySearch2 {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[] { 0,0,1,1, 1};
+        int[] nums = new int[] {0,0};
         BinarySearch2 bs = new BinarySearch2();
         int targetIndex = bs.binarySearch2(nums, 1);
         System.out.println(targetIndex);
