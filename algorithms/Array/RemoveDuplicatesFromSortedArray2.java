@@ -1,23 +1,23 @@
-// lint 101
+// lint 101, lc 80
 
 public class RemoveDuplicatesFromSortedArray2 {
     public int removeDuplicates(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
-        int index = 0, count = 1;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == nums[index]) {
-                if (count < 2) {
-                    nums[++index] = nums[i];
-                    count ++;
-                }
-            } else {
-                nums[++index] = nums[i];
-                count = 1;
+        if (nums == null || nums.length == 0) return 0;
+        if (nums.length < 3) return nums.length;
+        int slow = 1, fast = 1, repeat = 1;
+        while (fast < nums.length) {
+            if (nums[fast] == nums[fast - 1]) {
+                repeat++;
             }
+            else {
+                repeat = 1;
+            }
+            if (repeat <= 2) {
+                nums[slow++] = nums[fast];
+            }
+            fast++;
         }
-        return index + 1;
+        return slow;
     }
 
     public static void main(String[] args) {
