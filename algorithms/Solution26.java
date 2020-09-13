@@ -12,13 +12,15 @@ package src.algorithms;
 //}
 public class Solution26 {
     public int removeDuplicates(int[] nums) {
-        int j = 0; //current index
-        for (int i = 1; i<nums.length; i++) { 
-            if (nums[i] != nums[j]) { //new number
-                j++; //move current index
-                nums[j] = nums[i]; //fill current index with new number
-            } 
+        if (nums == null || nums.length == 0) return 0;
+        if (nums.length == 1) return 1;
+        int slow = 1, fast = 1;
+        while (fast < nums.length) {
+            if (nums[fast] != nums[fast - 1]) {
+                nums[slow++] = nums[fast];
+            }
+            fast++;
         }
-    return j+1;
-   }
+        return slow;
+    }
 }
