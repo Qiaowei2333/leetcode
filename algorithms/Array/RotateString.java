@@ -26,7 +26,6 @@ public class RotateString {
             start++;
             end--;
         }
-        return;
     }
 
     public static void main(String[] args) {
