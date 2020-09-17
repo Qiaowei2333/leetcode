@@ -6,31 +6,27 @@ public class ThreeSum {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
-            if (i == 0 || nums[i - 1] != nums[i]) {
-                int low = i + 1;
-                int high = nums.length - 1;
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                int l = i + 1;
+                int r = nums.length - 1;
                 int target = -nums[i];
-                while (low < high) {
-                    if (nums[low] + nums[high] == target) {
+                while (l < r) {
+                    if (nums[l] + nums[r] == target) {
                         List<Integer> triplet = new ArrayList<>();
                         triplet.add(nums[i]);
-                        triplet.add(nums[low]);
-                        triplet.add(nums[high]);
+                        triplet.add(nums[l]);
+                        triplet.add(nums[r]);
                         result.add(triplet);
-                        while (low < high && nums[low] == nums[low + 1]) {
-                            low++;
-                        }
-                        while (low < high && nums[high] == nums[high - 1]) {
-                            high--;
-                        }
-                        low++;
-                        high--;
+                        l++;
+                        r--;
+                        while (l < r && nums[l] == nums[l - 1]) l++;
+                        while (l < r && nums[r] == nums[r + 1]) r--; 
                     }
-                    else if (nums[low] + nums[high] > target) {
-                        high--;
-                    } 
+                    else if (nums[l] + nums[r] > target) {
+                        r--;
+                    }
                     else {
-                        low++;
+                        l++;
                     }
                 }
             }
