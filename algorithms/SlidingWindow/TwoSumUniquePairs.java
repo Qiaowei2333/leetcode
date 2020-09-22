@@ -3,8 +3,8 @@ import java.util.*;
 public class TwoSumUniquePairs {
     public int twoSum6(int[] nums, int target) {
         Arrays.sort(nums);
-        // cannot use Arrays.sort(nums, (a, b) -> a - b); for int[], because int - int could be a issue for negative numbers
-        // if want to do des order, Arrays.sort(nums, Collections.reverseOder());
+        // cannot use Arrays.sort(nums, (a, b) -> a - b); for int[], because int - int could be a issue for negative numbers - need to transfer from int[] to Integer[]
+        // if want to do des order, Arrays.sort(nums, Collections.reverseOder());  - num is Integer[]
         int i = 0, j = nums.length - 1;
         int count = 0;
         while (i < j) {
