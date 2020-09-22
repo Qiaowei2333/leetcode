@@ -1,7 +1,10 @@
 // lin587
+import java.util.*;
 public class TwoSumUniquePairs {
     public int twoSum6(int[] nums, int target) {
-        Arrays.sort(nums, (a, b) -> a - b);
+        Arrays.sort(nums);
+        // cannot use Arrays.sort(nums, (a, b) -> a - b); for int[], because int - int could be a issue for negative numbers
+        // if want to do des order, Arrays.sort(nums, Collections.reverseOder());
         int i = 0, j = nums.length - 1;
         int count = 0;
         while (i < j) {
@@ -21,5 +24,11 @@ public class TwoSumUniquePairs {
             }
         }
         return count;
+    }
+
+    public static void main(String[] args) {
+        TwoSumUniquePairs s = new TwoSumUniquePairs();
+        int[] nums = {1, 1, 2, 45, 46, 46};
+        System.out.println(s.twoSum6(nums, 47));
     }
 }
