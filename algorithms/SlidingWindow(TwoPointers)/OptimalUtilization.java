@@ -1,29 +1,31 @@
-// yama oa
-// https://leetcode.com/discuss/interview-question/373202
 import java.util.*;
-
+/**
+ * https://leetcode.com/discuss/interview-question/373202
+ */
 public class OptimalUtilization {
-    List<int[]> findPairs(List<int[]> a, List<int[]> b, int target) {
-        List<int[]> result = new ArrayList<>();
-        Collections.sort(a, (i, j) -> i[1] - j[1]);
-        Collections.sort(b, (i, j) -> i[1] - j[1]);
+    public List<int[]> optimal(List<int[]> a, List<int[]> b, int target) {
+        if (a == null || a.isEmpty() || b == null || b.isEmpty()) {
+            return new ArrayList<int[]>();
+        }
+
+        Collections.sort(a, (a1, a2) -> Integer.compare(a1[1], a2[1]));
+        Collections.sort(b, (b1, b2) -> Integer.compare(b1[1], b2[1]));
+        int m = a.size();
+        int n = b.size();
         int i = 0;
-        int j = b.size() - 1;
+        int j = n - 1;
+        List<int[]> result = new ArrayList<>();
         int max = Integer.MIN_VALUE;
-        while (i <= a.size() - 1 && j >= 0) {
+        while (i < m && j >= 0) {
             int sum = a.get(i)[1] + b.get(j)[1];
             if (sum <= target) {
-                if (sum >= max) {
-                    if (sum > max) {
-                        max = sum;
-                        result.clear();
-                    }
+                // maybe duplicate ele
+                if (sum > max) {
+                    result.clear();
+                    max = sum;
                     result.add(new int[]{a.get(i)[0], b.get(j)[0]});
-                    int index = j - 1;
-                    while (index >= 0 && b.get(j)[1] == b.get(index)[1]) {
-                        result.add(new int[]{a.get(i)[0], b.get(index)[0]});
-                        index--;
-                    }
+                } else if (sum == max) {
+                    result.add(new int[]{a.get(i)[0], b.get(j)[0]});
                 }
                 i++;
             } else {
@@ -34,25 +36,19 @@ public class OptimalUtilization {
     }
 
     public static void main(String[] args) {
-        OptimalUtilization s = new OptimalUtilization();
-        List<int[]> a = new ArrayList<>();
-        List<int[]> b = new ArrayList<>();
-        a.add(new int[]{1, 3});
-        a.add(new int[]{2, 3});
-        a.add(new int[]{3, 5});
-        a.add(new int[]{4, 7});
-        a.add(new int[]{5, 10});
-
-        b.add(new int[] {1, 2});
-        b.add(new int[] {2, 3});
-        b.add(new int[] {3, 4});
-        b.add(new int[] {4, 5});
-        b.add(new int[] {5, 7});
-        b.add(new int[] {6, 7});
-        List<int[]> result = s.findPairs(a, b, 10);
-        Iterator<int[]> resultIterator = result.iterator();
-        while (resultIterator.hasNext()) {
-            System.out.println(Arrays.toString(resultIterator.next()));
+        OptimalUtilization sol = new OptimalUtilization();
+        List<int[]> aa = new ArrayList<>();
+        aa.add(new int[]{1, 8});
+        aa.add(new int[]{2, 15});
+        aa.add(new int[]{3, 9});
+        aa.add(new int[]{4, 9});
+        List<int[]> bb = new ArrayList<>();
+        bb.add(new int[]{1, 8});
+        bb.add(new int[]{2, 11});
+        bb.add(new int[]{3, 12});
+        List<int[]> res = sol.optimal(aa, bb, 20);
+        for (int[] item : res) {
+            System.out.println(Arrays.toString(item));
         }
     }
 }
