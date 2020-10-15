@@ -36,27 +36,24 @@ public class MergeKSortedLists {
         return dummy.next;
     }
 
-    // sol2 min heap
-    public static ListNode mergeKLists2(ListNode[] lists) {
+    // sol2 min heap  time O(nk*logk)   space O(k)   k: number of lists, n: average length of each list
+    public static ListNode mergeKLists(ListNode[] lists) {
         if(lists.length == 0) return null;
-        Queue<ListNode> pq = new PriorityQueue<ListNode>((l1, l2) -> l1.val - l2.val);
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+            
+        Queue<ListNode> pq = new PriorityQueue<>((l1, l2) -> l1.val - l2.val);
+
         for(ListNode list:lists) {
-            while(list != null) {
-                pq.offer(list);
-                list = list.next;
-            }
+            if (list != null) pq.offer(list);
         }
-        if(pq.isEmpty()) 
-        {
-            return null;
+
+        while (!pq.isEmpty()) {
+            ListNode temp = pq.poll();
+            tail.next = temp;
+            tail = tail.next;
+            if (temp.next != null) pq.offer(temp.next);
         }
-        else {
-            ListNode result = pq.peek();
-            while (!pq.isEmpty()) {
-                ListNode temp = pq.poll();
-                temp.next = pq.peek();
-            }
-            return result; 
-        }
+        return dummy.next; 
     }
 }
