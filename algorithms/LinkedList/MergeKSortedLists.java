@@ -1,6 +1,7 @@
 // lc 23  merge sort
+// https://www.youtube.com/watch?v=XqA8bBoEdIY&ab_channel=HuaHua
 public class MergeKSortedLists {
-    // sol1 divide and conquer
+    // sol1 divide and conquer  k : number of lists,  n: avg number of nodes in list   time O(nk*logk) -  (height of stack)logk * nk (number of nodes we need to iterate)           space O(logk) logk is the height of the binary tree. The space for stack we use
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
         if (lists.length == 1) return lists[0];
