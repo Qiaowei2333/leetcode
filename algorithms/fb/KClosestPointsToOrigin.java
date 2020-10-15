@@ -1,6 +1,24 @@
 // lc 973
 import java.util.*;
 public class KClosestPointsToOrigin {
+    // Priority Queue
+    // time O(nlogn) space O(n)
+    public int[][] kClosest3(int[][] points, int K) {
+        Queue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] * a[0] + a[1] * a[1] - b[0] * b[0] - b[1] * b[1]);
+        int[][] res = new int[K][2];
+        
+        for (int[] point : points) {
+            pq.offer(point);
+        }
+        
+        for (int i = 0; i < K; i++) {
+            int[] temp = pq.poll();
+            res[i] = temp;
+        }
+        
+        return res;
+    }
+
     // quick sort
     // O(nlogn)   worstcase O(n2)
     public int[][] kClosest(int[][] points, int K) {
@@ -17,7 +35,7 @@ public class KClosestPointsToOrigin {
 
         while(left < right) {
             int pivotIndex = partition(points, left, right);
-            if (pivotIndex == K) {
+            if (pivotIndex == K) { // why we find K not K - 1 th. Because copyOfRnage(points, 0, K) K is exclusive
                 break;
             }
             else if (pivotIndex > K) {
@@ -38,7 +56,7 @@ public class KClosestPointsToOrigin {
         for (int i = left; i < nums.length; i++) {
             if (nums[i][0] * nums[i][0] + nums[i][1] * nums[i][1] < pivotValue) {
                 swap(nums, pivotIndex, i);
-                pivotIndex++;
+                pivotIndex++; // pivotIndex is the next spot you want to swap, because it is a mark of position which has a value bigger than pivotValue
             }
         }
         swap(nums, pivotIndex, right);
