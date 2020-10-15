@@ -14,7 +14,7 @@ public class MergeKSortedLists {
         ListNode right = mergeSort(mid + 1, end, lists);
         return merge(left, right);
     }
-    
+    // merge two sorted lists
     private ListNode merge(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
