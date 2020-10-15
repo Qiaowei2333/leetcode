@@ -23,6 +23,7 @@ public class MergeSort {
         return sortedArray;
       }
       
+      // merge two sorted array
       private int[] merge(int[] left, int[] right) {
         int[] mergedArray = new int[left.length + right.length];
         int i = 0, j = 0, m = 0;
