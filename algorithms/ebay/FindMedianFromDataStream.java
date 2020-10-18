@@ -3,7 +3,7 @@ import java.util.Queue;
 
 public class FindMedianFromDataStream {
     /** initialize your data structure here. */
-    Queue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.valueOf(b) - Integer.valueOf(a)); // ((a, b) -> b.compareTo(a));
+    Queue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.valueOf(b) - Integer.valueOf(a)); // ((a, b) -> b.compareTo(a));  compareTo method can be used to String or Integer
 	   
     Queue<Integer> minHeap = new PriorityQueue<>();
      // Adds a number into the data structure.
