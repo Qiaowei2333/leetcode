@@ -6,33 +6,34 @@ public class MergeKSortedArray {
         if (arrays == null || arrays.length == 0 || arrays[0].length == 0) return new int[0];
         int[] track = new int[arrays.length];
         int[] res = new int[arrays.length * arrays[0].length];
-        Queue<Pair> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
+        Queue<Tuple> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
         for (int i = 0; i < arrays.length; i++) {
             int val = arrays[i][0];
-            int pos = i;
-            pq.offer(new Pair(val, pos));
-            track[pos]++;
+            pq.offer(new Tuple(i, 0, val));
         }
         int m = 0;
         while (!pq.isEmpty()) {
-            Pair temp = pq.poll();
+            Tuple temp = pq.poll();
             res[m++] = temp.val;
-            int posInArr = track[temp.pos]++;
-            if (posInArr < arrays[0].length) {
-                int nextVal = arrays[temp.pos][posInArr];
-                Pair next = new Pair(nextVal, temp.pos);
+            int x = temp.x;
+            int y = temp.y + 1;
+            if (y < arrays[0].length) {
+                int nextVal = arrays[x][y];
+                Tuple next = new Tuple(x, y, nextVal);
                 pq.offer(next);
             }
         }
         return res;
     }
 
-    static class Pair {
+    static class Tuple {
+        int x;
+        int y;
         int val;
-        int pos;
-        public Pair(int val, int pos) {
+        public Tuple(int x, int y, int val) {
+            this.x = x;
+            this.y = y;
             this.val = val;
-            this.pos = pos;
         }
     }
 
