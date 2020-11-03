@@ -1,33 +1,45 @@
 //lc 692
 import java.util.*;
 public class TopKFrequentWords {
-    public List<String> topKFrequent(final String[] words, final int k) {
-        final List<String> result = new LinkedList<>();
-        final Map<String, Integer> map = new HashMap<>();
-        for (final String word : words) {
+    // time O(nlogk), space O(n)
+    public List<String> topKFrequent(String[] words, int k) {
+        List<String> res = new LinkedList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for (String word : words) {
             map.put(word, map.getOrDefault(word, 0) + 1);
         }
         
-        final PriorityQueue<Map.Entry<String, Integer>> queue = new PriorityQueue<>((a, b) -> {
-            if (a.getValue() == b.getValue()) {
-                return b.getKey().compareTo(a.getKey());
-            } else {
-                return a.getValue() - b.getValue();
+        Queue<Pair> pq = new PriorityQueue<>((a, b) -> {
+            if (a.freq == b.freq) {
+                return b.str.compareTo(a.str);
+            }
+            else {
+                return a.freq - b.freq;
             }
         });
         
-        for (final Map.Entry<String, Integer> entry: map.entrySet()) {
-            queue.offer(entry);
-            if (queue.size() > k) {
-                queue.poll();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            pq.offer(new Pair(entry.getKey(), entry.getValue()));
+            if (pq.size() > k) {
+                pq.poll();
             }
         }
-
-        while (!queue.isEmpty()) {
-            result.add(0, queue.poll().getKey());
+        
+        while (!pq.isEmpty()) {
+            Pair cur = pq.poll();
+            res.add(0, cur.str);
         }
-
-        return result;
+        
+        return res;
+    }
+    
+    static class Pair {
+        String str;
+        int freq;
+        public Pair(String str, int freq) {
+            this.str = str;
+            this.freq = freq;
+        }
     }
 
     public static void main(final String[] args) {
