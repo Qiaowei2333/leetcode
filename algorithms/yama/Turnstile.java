@@ -2,109 +2,63 @@
 import java.util.*;
 public class Turnstile {
     public int[] getTimes(int numCustomers, int[] arrTime, int[] direction) {
+        int[] res = new int[numCustomers];
+        Queue<Integer> enter = new LinkedList<>();
+        Queue<Integer> exit = new LinkedList<>();
+        int time = 0;
+        int i = 0; // customerId
+        int lastDir = -1; // -1 not used  1 leaving   0 entering
+        while (i < numCustomers || !enter.isEmpty() || !exit.isEmpty()) {
+            // put customers at this time into queues
+            while (i < numCustomers && arrTime[i] <= time) {
+                if (direction[i] == 1) {
+                    exit.offer(i);
+                }
+                else {
+                    enter.offer(i);
+                }
+                i++;
+            }
 
-        int[] result = new int[numCustomers];
-    
-        Map<Integer, List<int[]>> map = new HashMap<Integer, List<int[]>>();
-    
-        Queue<int[]> entryQ = new ArrayDeque<int[]>();
-        Queue<int[]> exitQ = new ArrayDeque<int[]>();
-    
-        int i = 0;
-    
-        int turnstileDirection = -1; // default unused-1
-    
-        for (int a : arrTime) {
-    
-            if (!map.containsKey(a)) {
-                map.put(a, new ArrayList<int[]>());
-            }
-    
-            map.get(a).add(new int[] { i, direction[i] });
-    
-            i++;
-        }
-    
-        i = 0; // used to determine timeStamp, 
-        while (numCustomers > 0) {
-    
-            if (map.containsKey(i)) {
-                List<int[]> customers = map.get(i);
-    
-                for (int[] customer : customers) {
-                    if (customer[1] == 1) {
-                        exitQ.add(customer);
-                    } else {
-                        entryQ.add(customer);
-                    }
+            // compare two queues, let one pop and go thru turnstile
+            // enter not empty  exit not empty
+            if (!enter.isEmpty() && !exit.isEmpty()) {
+                if (lastDir == -1 || lastDir == 1) {
+                    int curCus = exit.poll();
+                    res[curCus] = time;
+                    lastDir = 1;
+                }
+                else {
+                    int curCus = enter.poll();
+                    res[curCus] = time;
+                    lastDir = 0;
                 }
             }
-    
-            if (entryQ.isEmpty() && exitQ.isEmpty()) {
-                turnstileDirection = -1;
-                i++;
-                continue;
+            else if (!exit.isEmpty()) { // exit not empty  enter empty
+                int curCus = exit.poll();
+                res[curCus] = time;
+                lastDir = 1;
             }
-    
-            int[] current;
-            if (!entryQ.isEmpty() && !exitQ.isEmpty()) {
-    
-                switch (turnstileDirection) {
-                case -1: // unused
-                    current = exitQ.poll();
-                    result[current[0]] = i;
-                    numCustomers--;
-                    turnstileDirection = 1;
-                    i++;
-                    break;
-    
-                case 1: // used for exit
-                    current = exitQ.poll();
-                    result[current[0]] = i;
-                    numCustomers--;
-                    turnstileDirection = 1;
-                    i++;
-                    break;
-    
-                case 0: // used to entry
-                    current = entryQ.poll();
-                    result[current[0]] = i;
-                    numCustomers--;
-                    turnstileDirection = 0;
-                    i++;
-                    break;
-    
-                }
-                continue;
+            else if (!enter.isEmpty()) { // enter not empty  exit empty
+                int curCus = enter.poll();
+                res[curCus] = time;
+                lastDir = 0;
             }
-    
-            if (!entryQ.isEmpty()) {
-                current = entryQ.poll();
-                result[current[0]] = i;
-                numCustomers--;
-                turnstileDirection = 0;
-                i++;
-                continue;
+            else { // enter empty   exit empty
+                lastDir = -1;
+                // skip time if next arrival time is longer than 1 sec
+                time = arrTime[i] - 1;
             }
-    
-            if (!exitQ.isEmpty()) {
-                current = exitQ.poll();
-                result[current[0]] = i;
-                numCustomers--;
-                turnstileDirection = 1;
-                i++;
-                continue;
-            }
+            time++;
         }
-    
-        return result;
+        return res;
     }
 
     public static void main(String[] args) {
         Turnstile s = new Turnstile();
-        int numCustomers = 2;
-        int[] arrTime = {0, 0};
-        int[] direction = {1, 1};
+        int numCustomers = 5;
+        int[] arrTime = {0,1,1,3,3};
+        int[] direction = {0, 1, 0, 0, 1};
         int[] res = s.getTimes(numCustomers, arrTime, direction);
         System.out.println(Arrays.toString(res));
     }
