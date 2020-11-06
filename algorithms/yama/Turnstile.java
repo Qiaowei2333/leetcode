@@ -1,6 +1,7 @@
 // https://leetcode.com/discuss/interview-question/853053/
 import java.util.*;
 public class Turnstile {
+    // time O(n) n : numCustomers   space o(n)
     public int[] getTimes(int numCustomers, int[] arrTime, int[] direction) {
         int[] res = new int[numCustomers];
         Queue<Integer> enter = new LinkedList<>();
