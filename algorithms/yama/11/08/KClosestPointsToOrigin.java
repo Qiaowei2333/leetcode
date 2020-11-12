@@ -1,4 +1,4 @@
-// lc 973
+// lc 973  类似 lc 215
 import java.util.*;
 public class KClosestPointsToOrigin {
     // Priority Queue
@@ -33,7 +33,7 @@ public class KClosestPointsToOrigin {
         int left = 0; 
         int right = points.length - 1;
 
-        while(left < right) {
+        while(left <= right) {
             int pivotIndex = partition(points, left, right);
             if (pivotIndex == K) { // why we find K not K - 1 th. Because copyOfRnage(points, 0, K) K is exclusive
                 break;
