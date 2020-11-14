@@ -1,17 +1,14 @@
-// lc 91
+// lc 91 https://www.youtube.com/watch?v=OjEHST4SXfE&ab_channel=HuaHua
 public class DecodeWays {
     // time O(n) space O(n)
     public int numDecodings(String s) {
         char[] arr = s.toCharArray();
-        int[] dp = new int[arr.length];
-        if (arr.length == 1) {
-            return isValidOneDigit(arr, 0) ? 1 : 0;
-        }
-        dp[0] = isValidOneDigit(arr, 0) ? 1 : 0;
-        dp[1] = dp[0] * (isValidOneDigit(arr, 1) ? 1 : 0) + 1 * (isValidTwoDigit(arr, 0, 1) ? 1 : 0);
-        for (int i = 2; i < arr.length; i++) {
-            int prev1 = (isValidOneDigit(arr, i) ? 1 : 0) * dp[i - 1];
-            int prev2 = (isValidTwoDigit(arr, i - 1, i) ? 1 : 0) * dp[i - 2];
+        int[] dp = new int[arr.length + 1];
+        dp[0] = 1;
+        dp[1] = isValidOneDigit(arr, 0) ? 1 : 0;
+        for (int i = 2; i < dp.length; i++) {
+            int prev1 = (isValidOneDigit(arr, i - 1) ? 1 : 0) * dp[i - 1];
+            int prev2 = (isValidTwoDigit(arr, i - 2, i - 1) ? 1 : 0) * dp[i - 2];
             dp[i] = prev1 + prev2;
         }
         return dp[dp.length - 1];
