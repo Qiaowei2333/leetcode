@@ -24,7 +24,8 @@ public class LongestPalindromicSubstring {
         }
     }
 
-	// dp O(n^2)   space O(n^2) boolean array
+    // dp sol O(n^2)   space O(n^2) boolean array
+    // isPalindrome[i][j]  i start index, j end index,  stands for s.substring(i, j - i + 1) is palindrome or not
 	public String longestPalindrome1(String s) {
         if (s == null || s.length() == 0) {
             return s;
@@ -46,12 +47,12 @@ public class LongestPalindromicSubstring {
             }
         }
         
-        for (int l = 3; l <= len; l++) {
-            for (int j = l - 1; j < len; j++) {
-                if (s.charAt(j + 1 - l) == s.charAt(j) && isPalindrome[j + 2 - l][j - 1] == true) {
-                    isPalindrome[j + 1 - l][j] = true;
-                    maxLen = l;
-                    start = j + 1 - l;
+        for (int j = 2; j < len; j++) {
+            for (int i = 0; i < j - 1; i++) {
+                isPalindrome[i][j] = s.charAt(i) == s.charAt(j) && isPalindrome[i + 1][j - 1];
+                if (isPalindrome[i][j] && maxLen < j - i + 1) {
+                    start = i;
+                    maxLen = j - i + 1;
                 }
             }
         }
@@ -93,7 +94,7 @@ public class LongestPalindromicSubstring {
 	
 	public static void main(String[] args) {
 		LongestPalindromicSubstring s = new LongestPalindromicSubstring();
-		String result = s.longestPalindrome("babad");
+		String result = s.longestPalindrome1("babad");
 		System.out.println(result);
 	}
 }
