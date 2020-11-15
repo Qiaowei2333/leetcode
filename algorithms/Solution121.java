@@ -15,4 +15,19 @@ class Solution121 {
         }
         return result;
     }
+
+    // DP sol, time O(n)  space O(n), dp[i] stands for, when selling at day i+1, most profit made
+    public int maxProfitDP(int[] prices) {
+        if (prices == null || prices.length == 0) return 0;
+        int n = prices.length;
+        int[] dp = new int[n]; 
+        dp[0] = 0;
+        int max = 0;
+        for (int i = 1; i < n; i++) {
+             dp[i] = dp[i - 1] + (prices[i] - prices[i - 1]);
+            if (dp[i] < 0) dp[i] = 0;
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
 }
