@@ -10,6 +10,7 @@ public class FindEnd {
     
     // bfs time O(m * n)
     public boolean canArriveAtEndPointBFS(char[][] array, int startX, int startY) {
+        if (array == null || array.length == 0 || array[0].length == 0) return false;
         Queue<Coordinate> queue = new LinkedList<>();
         boolean[][] visited = new boolean[array.length][array[0].length];
         queue.offer(new Coordinate(startX, startY));
