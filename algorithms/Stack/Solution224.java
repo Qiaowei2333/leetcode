@@ -1,46 +1,41 @@
-package src.algorithms.Stack;
-
+// lc 224 https://www.youtube.com/watch?v=081AqOuasw0&t=316s&ab_channel=JessicaLin
 import java.util.Stack;
-
-public class Solution224 {
-	
+public class Solution224 {	
 	public static int calculate(String s) {
-	    Stack<Integer> stack = new Stack<Integer>();
-	    int result = 0;
-	    int number = 0;
-	    int sign = 1;
-	    for(int i = 0; i < s.length(); i++){
-	        char c = s.charAt(i);
-	        if(Character.isDigit(c)){
-	            number = 10 * number + (int)(c - '0');
-	        }else if(c == '+'){
-	            result += sign * number;
-	            number = 0;
-	            sign = 1;
-	        }else if(c == '-'){
-	            result += sign * number;
-	            number = 0;
-	            sign = -1;
-	        }else if(c == '('){
-	            //we push the result first, then sign;
-	            stack.push(result);
-	            stack.push(sign);
-	            //reset the sign and result for the value in the parenthesis
-	            sign = 1;   
-	            result = 0;
-	        }else if(c == ')'){
-	            result += sign * number;  
-	            number = 0;
-	            result *= stack.pop();    //stack.pop() is the sign before the parenthesis
-	            result += stack.pop();   //stack.pop() now is the result calculated before the parenthesis
-	            
-	        }
-	    }
-	    if(number != 0) result += sign * number;
-	    return result;
+		int sign = 1;
+		int sum = 0;
+		Stack<Integer> stack = new Stack<>();
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+				int num = 0;
+				while (i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+					num = num * 10 + s.charAt(i) - '0';
+					i++;
+				}
+				i--;
+				sum = sum + num * sign;
+			}
+			else if (s.charAt(i) == '+') {
+				sign = 1;
+			}
+			else if (s.charAt(i) == '-') {
+				sign = -1;
+			}
+			else if (s.charAt(i) == '(') {
+				stack.push(sum);
+				stack.push(sign);
+				sum = 0;
+				sign = 1;
+			}
+			else if (s.charAt(i) == ')') {
+				sum *= stack.pop();
+				sum += stack.pop();
+			}
+		}
+		return sum;
 	}
 	public static void main(String[] args) {
-		String s = "2147483647";
+		String s = "2+(1+(4+5+2)-3)+(6+8)";
 		int result = calculate(s);
 		System.out.println(result);
 	}
