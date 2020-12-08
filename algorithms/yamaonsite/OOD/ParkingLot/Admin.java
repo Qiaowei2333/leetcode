@@ -1,0 +1,11 @@
+package OOD.ParkingLot;
+
+public class Admin extends Account {
+    public boolean addParkingFloor(ParkingFloor floor) {}
+    public bool addParkingSpot(String floorName, ParkingSpot spot);
+    public bool addParkingDisplayBoard(String floorName, ParkingDisplayBoard displayBoard);
+    public bool addCustomerInfoPanel(String floorName, CustomerInfoPanel infoPanel);
+  
+    public bool addEntrancePanel(EntrancePanel entrancePanel);
+    public bool addExitPanel(ExitPanel exitPanel);
+}
