@@ -6,7 +6,7 @@ public class BinarySearch {
             return -1;
         }
         int start = 0, end = nums.length - 1;
-        while (start <= end) {
+        while (start <= end) { //需要等号  例子 nums = [5]  target = 5 
             int mid = start + (end - start) / 2;
             if (nums[mid] == target) {
                 return mid;
