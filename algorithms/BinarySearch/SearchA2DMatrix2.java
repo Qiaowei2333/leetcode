@@ -1,5 +1,24 @@
 // lc 240
 public class SearchA2DMatrix2 {
+    // sol2: time O(log(m*n))
+    // https://www.youtube.com/watch?v=g4Qy83toSzc&ab_channel=happygirlzt
+    public boolean searchMatrix2(int[][] matrix, int target) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int curRow = 0;
+        int curCol = n - 1;
+        while (curRow < m && curCol >= 0) {
+            if (matrix[curRow][curCol] == target) return true;
+            if (matrix[curRow][curCol] > target) {
+                curCol--;
+            }
+            else {
+                curRow++;
+            }
+        }
+        return false;
+    }
+    // sol1: time O(logm * logn)
     public boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix.length;
         int n = matrix[0].length;
