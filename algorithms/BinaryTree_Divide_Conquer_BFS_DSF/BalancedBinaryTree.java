@@ -1,7 +1,27 @@
-// lin93
+// lin93 lc 110
 import java.util.*;
 
 public class BalancedBinaryTree {
+    // sol2 - max depth of binary tree https://leetcode.com/problems/balanced-binary-tree/discuss/35943/JAVA-O(n)-solution-based-on-Maximum-Depth-of-Binary-Tree
+    private boolean result = true;
+
+    public boolean isBalanced2(TreeNode root) {
+        maxDepth(root);
+        return result;
+    }
+    
+    public int maxDepth(TreeNode root) {
+        if (root == null)
+            return 0;
+        int l = maxDepth(root.left);
+        int r = maxDepth(root.right);
+        if (Math.abs(l - r) > 1)
+            result = false;
+        return 1 + Math.max(l, r);
+    }
+
+
+    // sol 1
     static class TreeNode {
         int value;
         TreeNode left;
