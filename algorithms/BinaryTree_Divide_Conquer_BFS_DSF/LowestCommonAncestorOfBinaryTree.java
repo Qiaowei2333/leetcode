@@ -17,6 +17,7 @@ public class LowestCommonAncestorOfBinaryTree {
 // 4. 注意root本身是p或者q时，root自己就是LCA的结果，直接返回
 
 // sol1 此解法前提条件是p q一定存在tree 里面
+// 此函数的含义：如果p，q都存在，返回p和q的lca，如果都不存在，返回null，如果只有一个存在，返回那个本身
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
@@ -45,36 +46,7 @@ public class LowestCommonAncestorOfBinaryTree {
         // return null;
     }
 
-// sol2 如果p q可能不在tree里面， 解法如下： lowestCommonAncestor1 返回null 意味着不存在，p或者q至少一个不在tree里面
-    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) { 
-        if (p.val > q.val) return lowestCommonAncestor(root, q, p);
-        
-        if (root.val > q.val) {
-            return lowestCommonAncestor(root.left, p, q);
-        }
-        else if (root.val < p.val) {
-            return lowestCommonAncestor(root.right, p, q);
-        }
-        else {
-            boolean pFinded = searchNode(root, p);
-            boolean qFinded = searchNode(root, q);
-            if (pFinded && qFinded) {
-                return root;
-            }
-            else {
-                return null;
-            }
-        }
-    }
 
-    private boolean searchNode(TreeNode root, TreeNode target) {
-        if (root == null) return false;
-        if (root.val == target.val) return true;
-        else if (root.val > target.val) 
-            return searchNode(root.left, target);
-        else 
-            return searchNode(root.right, target);
-    }
 
     public static void main(String[] args) {
         TreeNode node1 = new TreeNode(6);
@@ -99,7 +71,7 @@ public class LowestCommonAncestorOfBinaryTree {
         TreeNode node10 = new TreeNode(11);
 
         LowestCommonAncestorOfBinaryTree s = new LowestCommonAncestorOfBinaryTree();
-        TreeNode ancestor = s.lowestCommonAncestor1(node1, node2, node10);
+        TreeNode ancestor = s.lowestCommonAncestor(node1, node2, node10);
         System.out.println(ancestor.val);
     }
 }
