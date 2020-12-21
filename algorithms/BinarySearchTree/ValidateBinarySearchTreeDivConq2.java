@@ -1,6 +1,47 @@
 // lint 95 div and conq  use MinNode and MaxNode rather than minValue maxValue. Avoid 'root.val = Integer.MAX_VALUE not pass'
+// lc 98
 import java.util.*;
 public class ValidateBinarySearchTreeDivConq2 {
+    // 左右子树都是bst, root.val大于左子树最大，小于右子树最小
+    public boolean isValidBST(TreeNode root) {
+        TreeState res = traverse(root);
+        return res.isBST;
+    }
+    
+    TreeState traverse(TreeNode root) {
+        if (root == null) return new TreeState(true);
+        TreeState left = traverse(root.left);
+        TreeState right = traverse(root.right);
+        if (!left.isBST || !right.isBST) {
+            return new TreeState(false);
+        }
+        
+        if ((root.left != null) && (left.maxNode.val >= root.val)) {
+            return new TreeState(false);
+        }
+        
+        if ((root.right != null) && (right.minNode.val <= root.val)) {
+            return new TreeState(false);
+        }
+        TreeNode curMin = root.left == null ? root : left.minNode;
+        TreeNode curMax = root.right == null ? root : right.maxNode;
+        return new TreeState(true, curMin, curMax);
+    }
+
+    static class TreeState {
+        boolean isBST;
+        TreeNode maxNode;
+        TreeNode minNode;
+        public TreeState(boolean isBST) {
+            this.isBST = isBST;
+        }
+        public TreeState(boolean isBST, TreeNode minNode, TreeNode maxNode) {
+            this.isBST = isBST;
+            this.minNode = minNode;
+            this.maxNode = maxNode;
+        }       
+    }
+
     static class TreeNode {
         int val;
         TreeNode left;
@@ -8,50 +49,6 @@ public class ValidateBinarySearchTreeDivConq2 {
         public TreeNode(int x) {
             val = x;
         }
-    }
-
-    static class TreeState {
-        TreeNode minNode;
-        TreeNode maxNode;
-        boolean isBst;
-        public TreeState(boolean isBst) {
-            this.minNode = null;
-            this.maxNode = null;
-            this.isBst = isBst;
-        }
-    }
-
-    public boolean isValidBST(TreeNode root) {
-        TreeState result = validateHelper(root);
-        return result.isBst;
-    }
-
-    private TreeState validateHelper(TreeNode root) {
-        if (root == null) {
-            return new TreeState(true);
-        }
-
-        TreeState left = validateHelper(root.left);
-
-        TreeState right = validateHelper(root.right);
-
-        if (!right.isBst || !left.isBst) {
-            return new TreeState(false);
-        }
-
-        if (left.maxNode != null && left.maxNode.val >= root.val) { // if root.left != null, then left.maxNode != null, so we can replace left.maxNode != null with
-                                                                    // root.left != null
-            return new TreeState(false);
-        }
-
-        if (right.minNode != null && right.minNode.val <= root.val) {
-            return new TreeState(false);
-        }
-
-        TreeState result = new TreeState(true);
-        result.minNode = root.left == null ? root : left.minNode;
-        result.maxNode = root.right == null ? root : right.maxNode;
-        return result;
     }
 
     public static void main(String[] args) {
