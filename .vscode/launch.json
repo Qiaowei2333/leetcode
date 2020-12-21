@@ -2,6 +2,181 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch OrgChart",
+            "request": "launch",
+            "mainClass": "OrgChart",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BinarySearch2",
+            "request": "launch",
+            "mainClass": "BinarySearch2",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Solution224",
+            "request": "launch",
+            "mainClass": "Solution224",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FindEnd",
+            "request": "launch",
+            "mainClass": "FindEnd",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HuffmanTree",
+            "request": "launch",
+            "mainClass": "HuffmanTree",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - WordBreak2",
+            "request": "launch",
+            "mainClass": "WordBreak2",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - WordBreak",
+            "request": "launch",
+            "mainClass": "WordBreak",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MaximumSubarray",
+            "request": "launch",
+            "mainClass": "MaximumSubarray",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - LongestPalindromicSubstring",
+            "request": "launch",
+            "mainClass": "LongestPalindromicSubstring",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DecodeWays",
+            "request": "launch",
+            "mainClass": "DecodeWays",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Fibonacci",
+            "request": "launch",
+            "mainClass": "Fibonacci",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ShoppingPatterns",
+            "request": "launch",
+            "mainClass": "ShoppingPatterns",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DistanceBetweenNodesInBST",
+            "request": "launch",
+            "mainClass": "DistanceBetweenNodesInBST",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - LowestCommonAncestorOfBinaryTree",
+            "request": "launch",
+            "mainClass": "LowestCommonAncestorOfBinaryTree",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - InsertNodeInABinarySearchTree",
+            "request": "launch",
+            "mainClass": "InsertNodeInABinarySearchTree",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - NumberOfIslands",
+            "request": "launch",
+            "mainClass": "NumberOfIslands",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SubstringsOfSizeKwithKMinus1DistinctChars",
+            "request": "launch",
+            "mainClass": "SubstringsOfSizeKwithKMinus1DistinctChars",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TransactionLogs",
+            "request": "launch",
+            "mainClass": "TransactionLogs",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TopKFrequentlyMentionedKeywords",
+            "request": "launch",
+            "mainClass": "TopKFrequentlyMentionedKeywords",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - UtilizationChecks",
+            "request": "launch",
+            "mainClass": "UtilizationChecks",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FiveStarSellers",
+            "request": "launch",
+            "mainClass": "FiveStarSellers",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Turnstile",
+            "request": "launch",
+            "mainClass": "Turnstile",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TwoSumUniquePairs",
+            "request": "launch",
+            "mainClass": "TwoSumUniquePairs",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ConvertBinaryTreeToDoublyLinkedList",
+            "request": "launch",
+            "mainClass": "ConvertBinaryTreeToDoublyLinkedList",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SortList",
+            "request": "launch",
+            "mainClass": "SortList",
+            "projectName": "leetcode_891d3a1b"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - StockSystem",
             "request": "launch",
             "mainClass": "StockSystem",

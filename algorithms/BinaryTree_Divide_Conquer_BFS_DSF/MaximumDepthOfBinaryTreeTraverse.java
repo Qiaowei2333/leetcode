@@ -13,7 +13,7 @@ public class MaximumDepthOfBinaryTreeTraverse {
 
     public int maxDepth(TreeNode root) {
         depth = 0;
-        traverse(root, 1);
+        traverse(root, depth + 1);
         return depth;
     }
 

@@ -1,37 +1,19 @@
+// lc 162
 public class FindPeakElement {
-    public int findPeak(int[] A) {
-        int start = 0, end = A.length - 1;
-        while(start + 1 < end) {
+    public int findPeakElement(int[] nums) {
+        int start = 0; 
+        int end = nums.length - 1;
+        while (start <= end) {
             int mid = start + (end - start) / 2;
-            if(peak(A, mid) == 0) {
-                return mid;
+            if (mid == nums.length - 1 || nums[mid] > nums[mid + 1]) {
+                end = mid - 1;
             }
-            else if(peak(A, mid) == 1){
-                start = mid;
-            }
-            else {
-                end = mid;
+            else if (mid == 0 || nums[mid] < nums[mid + 1]) {
+                start = mid + 1;
             }
         }
-
-        if(A[start] < A[start + 1]) {
-            return start;
-        }
-        // if(A[end] < A[end - 1]) {
-            return end;
-        // }
-    }
-
-    public int peak(int[] A, int i) {
-        if(A[i] > A[i - 1] && A[i] > A[i + 1]) {
-            return 0;
-        }
-        else if(A[i] < A[i - 1] && A[i] > A[i + 1]) {
-            return -1;
-        }
-        else {
-            return 1;
-        }
+        
+        return start;
     }
     public static void main(String[] args) {
         
