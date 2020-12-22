@@ -5,27 +5,29 @@
 public class ConvertBinarySearchTreeToSortedDoublyLinkedList {
     public Node treeToDoublyList(Node root) {
         if (root == null) return null;
-        PairMinMax result = inOrderTraverse(root);
-        result.lMst.left = result.rMst;
-        result.rMst.right = result.lMst;
-        return result.lMst;
+        PairMinMax res = convert(root);
+        res.lMst.left = res.rMst;
+        res.rMst.right = res.lMst;
+        return res.lMst;
     }
     
-    private PairMinMax inOrderTraverse(Node root) {
-        if (root == null) return new PairMinMax();
-        PairMinMax leftSub = inOrderTraverse(root.left);
-        if (leftSub.rMst != null) {
-            root.left = leftSub.rMst;
-            leftSub.rMst.right = root;  
+    private PairMinMax convert(Node root) {
+        if (root == null) return null;
+        PairMinMax leftList = convert(root.left);
+        if (leftList != null) {
+            Node rMst = leftList.rMst;
+            rMst.right = root;
+            root.left = rMst;
         }
-        PairMinMax rightSub = inOrderTraverse(root.right);
-        if (rightSub.lMst != null) {
-            root.right = rightSub.lMst;
-            rightSub.lMst.left = root;
+        PairMinMax rightList = convert(root.right);
+        if (rightList != null) {
+            Node lMst = rightList.lMst;
+            lMst.left = root;
+            root.right = lMst;
         }
         PairMinMax cur = new PairMinMax();
-        cur.lMst = leftSub.lMst == null ? root : leftSub.lMst;
-        cur.rMst = rightSub.rMst == null ? root : rightSub.rMst;
+        cur.lMst = root.left == null ? root : leftList.lMst;
+        cur.rMst = root.right == null ? root : rightList.rMst;
         return cur;
     }
     
