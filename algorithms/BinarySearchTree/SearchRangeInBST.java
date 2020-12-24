@@ -1,8 +1,10 @@
-// lint11
+// lint 11
 
 import java.util.*;
 
 public class SearchRangeInBST {
+// Given a binary search tree and a range [k1, k2], return node values within a given range in ascending order.
+// 看到return list with values in ascending order，应该明白是利用bst中序遍历   
     static class TreeNode {
         int val;
         TreeNode left;
@@ -24,7 +26,7 @@ public class SearchRangeInBST {
             return;
         }
 
-        if (root.val > k1) {
+        if (root.val > k1) { // 利用 bst 特性 pruning， root.val<=k1时没必要往左走了，左边所有数必定 < k1
             helper(result, root.left, k1, k2);
         }
 
@@ -32,7 +34,7 @@ public class SearchRangeInBST {
             result.add(root.val);
         }
 
-        if (root.val < k2) {
+        if (root.val < k2) { // // 利用 bst 特性 pruning，root.val>=k2时没必要往右走了，右边所有数必定 > k2
             helper(result, root.right, k1, k2);
         }
     }
