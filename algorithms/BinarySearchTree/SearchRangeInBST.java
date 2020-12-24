@@ -14,7 +14,8 @@ public class SearchRangeInBST {
             val = x;
         }
     }
-
+    // search in bst
+    // time O(h), h is the height of the tree, h could be logn if tree is balanced, or h could be n in the worst case (全在左边)
     public List<Integer> searchRange(TreeNode root, int k1, int k2) {
         List<Integer> result = new ArrayList<Integer>();
         helper(result, root, k1, k2);
