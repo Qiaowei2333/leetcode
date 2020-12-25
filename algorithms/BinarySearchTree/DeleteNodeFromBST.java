@@ -1,18 +1,8 @@
-// lt450 https://www.youtube.com/watch?v=00r9qf7lgAk
+// lc450 https://www.youtube.com/watch?v=00r9qf7lgAk
 import java.util.*;
 
 public class DeleteNodeFromBST {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
-    // change value, not node
+    // change value, not node O(h)
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) {
             return null;
@@ -68,6 +58,16 @@ public class DeleteNodeFromBST {
             }
         }
         return root;
+    }
+
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
     }
     public static void main(String[] args) {
         TreeNode node5 = new TreeNode(5);
