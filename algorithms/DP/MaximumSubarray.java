@@ -18,6 +18,4 @@ public class MaximumSubarray {
         int max = maxSubArray(nums);
         System.out.println(max);
     }
-
-    // 
 }
