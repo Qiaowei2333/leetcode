@@ -1,6 +1,6 @@
 // lc 701
 public class InsertNodeInABinarySearchTree{
-    // O(h)
+    // O(h) recursion sol1
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) return new TreeNode(val);
         
@@ -15,6 +15,27 @@ public class InsertNodeInABinarySearchTree{
         }
         
         return root;
+    }
+    // O(h) iteration sol 2
+    public TreeNode insertIntoBST2(TreeNode root, int val) {
+        if (root == null) return new TreeNode(val);
+        TreeNode res = root;
+        TreeNode prev = null;
+        while (root != null) {
+            if (root.val > val) {
+                prev = root;
+                root = root.left; 
+                if (root == null)
+                    prev.left = new TreeNode(val);
+            }
+            else {
+                prev = root;
+                root = root.right;
+                if (root == null)
+                    prev.right = new TreeNode(val);
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {
