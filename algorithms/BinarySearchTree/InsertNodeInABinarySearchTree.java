@@ -1,30 +1,22 @@
-// lint 85 recursive
+// lc 701
 public class InsertNodeInABinarySearchTree{
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        public TreeNode(int x) {
-            val = x;
+    // O(h)
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        if (root == null) return new TreeNode(val);
+        
+        if (root.val > val) {
+            TreeNode left = insertIntoBST(root.left, val);
+            if (root.left == null) root.left = left;
         }
-    }
-
-    public TreeNode insertNode(TreeNode root, TreeNode node) {
-        if (root == null) {
-            return node;
+        
+        if (root.val < val) {
+            TreeNode right = insertIntoBST(root.right, val);
+            if (root.right == null) root.right = right; 
         }
-
-        if (root.val > node.val) {
-            root.left = insertNode(root.left, node);
-        }
-
-        if (root.val < node.val) {
-            root.right = insertNode(root.right, node);
-        }
-
+        
         return root;
     }
+
     public static void main(String[] args) {
         InsertNodeInABinarySearchTree s = new InsertNodeInABinarySearchTree();
         TreeNode node1 = new TreeNode(7);
@@ -41,8 +33,7 @@ public class InsertNodeInABinarySearchTree{
         node3.left = node6;
         node3.right = node7;
 
-        TreeNode node = new TreeNode(0);
-        TreeNode result = s.insertNode(node1, node);
+        TreeNode result = s.insertIntoBST(node1, 0);
         System.out.println(result);
     }
 }
