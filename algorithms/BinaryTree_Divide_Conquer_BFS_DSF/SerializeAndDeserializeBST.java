@@ -1,12 +1,13 @@
 // lc 449
 import java.util.*;
 public class SerializeAndDeserializeBST {
+    // https://leetcode.com/problems/serialize-and-deserialize-bst/discuss/177617/the-General-Solution-for-Serialize-and-Deserialize-BST-and-Serialize-and-Deserialize-BT
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         if (root == null) return "";
         StringBuilder sb = new StringBuilder();
         traverse(root, sb);
-        sb.deleteCharAt(sb.length() - 1);
+        sb.deleteCharAt(sb.length() - 1); // remove last ,
         return sb.toString();
     }
     
