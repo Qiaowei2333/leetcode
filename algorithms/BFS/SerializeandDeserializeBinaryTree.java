@@ -9,6 +9,7 @@
 //   1） 2 as the root and 1 as the right child
 //   2） 1 as the root and 2 as the left child
 // 这两个inorder顺序一样，但是是两个不同的数
+// 4. 此题和lc 105类似，但是为啥lc 105需要两个顺序，因为105没有记录null，不知道叶子节点
 import java.util.*;
 
 public class SerializeandDeserializeBinaryTree {
