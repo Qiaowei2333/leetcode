@@ -1,14 +1,16 @@
-// lt261
+// lc 261
+import java.util.*;
 class GraphValidTree {
     public boolean validTree(int n, int[][] edges) {
         if (n == 0) {
             return false;
         }
-        // 节点数 - 1 = 边的数
+        // 节点数 - 1 = 边的数，用来判断有没有环
         if (n - 1 != edges.length) {
             return false;
         }
-        
+
+        // List<List<Integer>> 也行
         Map<Integer, Set<Integer>>graph = iniUndirectedGraph(n, edges);
         
         Queue<Integer> queue = new LinkedList<>();
