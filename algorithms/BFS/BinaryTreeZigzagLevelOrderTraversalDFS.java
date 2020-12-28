@@ -1,6 +1,6 @@
-//lt103 DFS
+//lc 103 DFS
 import java.util.*;
-public class BinaryTreeZigzagLevelOrderTraversalBFS {
+public class BinaryTreeZigzagLevelOrderTraversalDFS {
     static class TreeNode {
         int val;
         TreeNode left;
@@ -11,7 +11,7 @@ public class BinaryTreeZigzagLevelOrderTraversalBFS {
     }
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList();
+        List<List<Integer>> result = new ArrayList<>();
         traverse(root, result, 0);
         return result;
     }
@@ -25,7 +25,7 @@ public class BinaryTreeZigzagLevelOrderTraversalBFS {
             result.add(new LinkedList<Integer>());
         }
 
-        LinkedList<Integer> level = result.get(depth); 
+        List<Integer> level = result.get(depth); 
         if (depth % 2 == 0) {
             level.add(root.val);
         } else {
