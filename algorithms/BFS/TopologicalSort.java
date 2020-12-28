@@ -1,4 +1,5 @@
 // lin127
+import java.util.*;
 public class TopologicalSort {
 
     static class DirectedGraphNode {
@@ -12,6 +13,7 @@ public class TopologicalSort {
         ArrayList<DirectedGraphNode> result = new ArrayList<DirectedGraphNode>();
         Map<DirectedGraphNode, Integer> map = new HashMap<>();
         
+        // 计算入度
         for (DirectedGraphNode node : graph) {
             for (DirectedGraphNode neighbor : node.neighbors) {
                 map.put(neighbor, map.getOrDefault(neighbor, 0) + 1);
@@ -20,6 +22,7 @@ public class TopologicalSort {
         
         Queue<DirectedGraphNode> queue = new LinkedList<>();
         
+        // 将入度为零的放入queue和result
         for (DirectedGraphNode node : graph) {
             if (!map.containsKey(node)) {
                 queue.offer(node);
