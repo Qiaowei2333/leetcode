@@ -16,6 +16,7 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+import java.util.*;
 public class ConvertBinaryTreetoLinkedListsbyDepth {
     /**
      * @param root the root of binary tree
@@ -59,5 +60,11 @@ public class ConvertBinaryTreetoLinkedListsbyDepth {
     
     }
     return result;
+  }
+
+  public class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
   }
 }
