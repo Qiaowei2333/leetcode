@@ -1,6 +1,8 @@
 // lc 269, 是排所有出现过的letter的序
 import java.util.*;
 class AlienDictionary {
+    // time O(n) n - total number of characters in words
+    // space O(1) 我觉得趋近于常数 因为最多26个character
     public String alienOrder(String[] words) {
         Map<Character, Integer> indegree = new HashMap<>();
         Map<Character, Set<Character>> graph = new HashMap<>();
