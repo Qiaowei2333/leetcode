@@ -1,11 +1,11 @@
-// lc 269
+// lc 269, 是排所有出现过的letter的序
 import java.util.*;
 class AlienDictionary {
     public String alienOrder(String[] words) {
         Map<Character, Integer> indegree = new HashMap<>();
         Map<Character, Set<Character>> graph = new HashMap<>();
-        for (int i = 1; i < words.length; i++) {
-            compare(words[i - 1], words[i], indegree, graph);
+        if (!buildGraph(graph, indegree, words)) {
+            return "";
         }
         Queue<Character> queue = new LinkedList<>();
         for (Map.Entry<Character, Set<Character>> entry : graph.entrySet()) {
@@ -29,28 +29,37 @@ class AlienDictionary {
             return "";
         }
     }
-    
-    private void compare(String a, String b, Map<Character, Integer> indegree, Map<Character, Set<Character>> graph) {
-        int i = 0;
-        while (i < a.length() && i < b.length()) {
-            if (a.charAt(i) != b.charAt(i)) {
-                if (!graph.containsKey(a.charAt(i))) graph.put(a.charAt(i), new HashSet<>());
-                if (!graph.containsKey(b.charAt(i))) graph.put(b.charAt(i), new HashSet<>());
-                if (!graph.get(a.charAt(i)).contains(b.charAt(i))) indegree.put(b.charAt(i), indegree.getOrDefault(b.charAt(i), 0) + 1);
-                graph.get(a.charAt(i)).add(b.charAt(i));
-                break;
+
+    private boolean buildGraph(Map<Character, Set<Character>> graph, Map<Character, Integer> indegree, String[] words) {
+        for (String word : words) {
+            for (char ch : word.toCharArray()) {
+                graph.putIfAbsent(ch, new HashSet<>());
             }
-            else {
-                if (i == 0)
-                    if (!graph.containsKey(a.charAt(i))) graph.put(a.charAt(i), new HashSet<>());
-            }
-            i++;
         }
+
+        for (int j = 1; j < words.length; j++) {
+            String a = words[j - 1];
+            String b = words[j];
+            int i = 0;
+            int minLen = Math.min(a.length(), b.length());
+            while (i < minLen) {
+                if (a.charAt(i) != b.charAt(i)) {
+                    if (!graph.get(a.charAt(i)).contains(b.charAt(i))) indegree.put(b.charAt(i), indegree.getOrDefault(b.charAt(i), 0) + 1);
+                    graph.get(a.charAt(i)).add(b.charAt(i));
+                    break;
+                }
+                i++;
+                if (i == minLen && a.length() > b.length()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {
         AlienDictionary s = new AlienDictionary();
-        String[] words = {"wr","wr"};
+        String[] words = {"abc","ab"};
         String res = s.alienOrder(words);
         System.out.println(res);
     }
