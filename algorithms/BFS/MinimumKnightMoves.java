@@ -1,5 +1,9 @@
-// lt 1197
+// lc 1197
+import java.util.*;
 public class MinimumKnightMoves {
+    // 1. 此题重点是棋盘上的位置怎么记录，如何知道已经visited过了
+    // 用 Map<Integer, Set<Integer>>, key 为X，value for set of Y
+    // 2. 优化方法，把x, y限定在第一象限，注意此时newX，newY必须是>=2的
     public int minKnightMoves(int x, int y) {
         if (x == 0 && y == 0) {
           return 0;  
