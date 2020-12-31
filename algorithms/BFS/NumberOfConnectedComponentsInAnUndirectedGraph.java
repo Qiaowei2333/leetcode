@@ -1,6 +1,7 @@
 // lc 323
 // time and space analysis  https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/516491/Java-Union-Find-DFS-BFS-Solutions-Complexity-Explain-Clean-code
 // 答案参考 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/77651/Standard-BFS-and-DFS-Solution-JAVA
+import java.util.*;
 public class NumberOfConnectedComponentsInAnUndirectedGraph {
     // dfs or bfs time both are O(v + e) v: # of vertex, e: # of edges
     // space O(v + e), because we have created adjacent list to represent graph
