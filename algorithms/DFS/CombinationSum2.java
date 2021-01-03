@@ -1,4 +1,4 @@
-//lin 153
+//lin 153   lc 40
 import java.util.*;
 public class CombinationSum2 {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
