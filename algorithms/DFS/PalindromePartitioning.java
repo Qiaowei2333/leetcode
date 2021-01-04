@@ -1,5 +1,7 @@
-// lc131
+// lc 131
 import java.util.*;
+// 1. string s.substring
+// 2. String curStr = s.substring(startPos, i + 1);
 public class PalindromePartitioning {
     public List<List<String>> partition(String s) {
         List<List<String>> result = new ArrayList<>();

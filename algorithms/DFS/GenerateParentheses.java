@@ -1,6 +1,7 @@
 // lc 22
 import java.util.*;
 public class GenerateParentheses {
+    // time O(2^2n) 总长度为2n，n个（，n个），每个都可以在或者不在，即便pruning了因为要valid，也是这个复杂度
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
         if (n <= 0) {
