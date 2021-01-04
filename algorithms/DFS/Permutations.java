@@ -1,4 +1,4 @@
-// lc46
+// lc 46
 import java.util.*;
 public class Permutations {
     public List<List<Integer>> permute(int[] nums) {
