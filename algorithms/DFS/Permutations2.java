@@ -1,5 +1,10 @@
 // lc 47
 import java.util.*;
+// 1. 难点在 line 26
+// if (i != 0 && nums[i] == nums[i - 1] && selected[i - 1]) {
+//   continue;
+// }
+// 如果不是第一个点，并且i与i-1的值相等，而且前面的已经被选过了， 比如2，1，1  假如i=2，i=1的已经被选过了，那么重复的i=2不可以被选
 public class Permutations2 {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
@@ -22,7 +27,7 @@ public class Permutations2 {
             if (selected[i]) {
                 continue;
             }
-            if ((i != 0 && nums[i] == nums[i - 1]) && !selected[i - 1]) {
+            if ((i != 0 && nums[i] == nums[i - 1]) && selected[i - 1]) {
                 continue;
             }
             list.add(nums[i]);
