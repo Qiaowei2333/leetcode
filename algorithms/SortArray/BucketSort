@@ -1,0 +1,2 @@
+// https://www.cnblogs.com/kkun/archive/2011/11/23/bucket_sort.html
+// lc 347, 根据频率大小排序，知道频率的区间一定在一个范围内，适合桶排序，耗费空间
