@@ -1,4 +1,4 @@
-// lt 51   youtube.com/watch?v=_ey1pyQy7Bg&t=445s
+// lc 51   youtube.com/watch?v=_ey1pyQy7Bg&t=445s
 import java.util.*;
 public class NQueens {
 

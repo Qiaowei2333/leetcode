@@ -1,4 +1,4 @@
-// lt 52 https://www.youtube.com/watch?v=Poh9n6RxNvw
+// lc 52 https://www.youtube.com/watch?v=Poh9n6RxNvw
 import java.util.*;
 public class NQueens2 {
     private int result = 0;
