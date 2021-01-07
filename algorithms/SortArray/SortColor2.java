@@ -1,5 +1,7 @@
 // lint 143 quick sort sol1, counting sort sol2
+// https://aaronice.gitbook.io/lintcode/high_frequency/sort_colors_ii
 public class SortColor2 {
+    // 可以quicksort，可以counting sort， 可以用two pointers
     public void sortColors2(int[] colors, int k) {
         quickSort(colors, 0, colors.length - 1);
     }
