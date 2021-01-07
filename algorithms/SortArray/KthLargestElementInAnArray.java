@@ -1,4 +1,4 @@
-// lc 215 quick select  time O(n), 原因每次取一半（近似， 当你n很大，平均下来可以看作每次取一半） 
+// lc 215 quick select  wost case o(n^2) avg time O(n), 原因每次取一半（近似， 当你n很大，平均下来可以看作每次取一半） 
 // T(n) = cn + T(n/2)
 // T(n/2) = cn/2 + T(n/4)
 // T(n/4) = cn/2 + T(n/8)
