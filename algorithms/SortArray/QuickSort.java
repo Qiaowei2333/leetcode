@@ -7,10 +7,11 @@ public class QuickSort {
     }
 
     private void quickSort(int[] nums, int start, int end) {
-        if (start >= end) return;
-        int pivot = partition(nums, start, end);
-        quickSort(nums, start, pivot - 1);
-        quickSort(nums, pivot + 1, end);
+        if (start <= end) {
+            int pivot = partition(nums, start, end);
+            quickSort(nums, start, pivot - 1);
+            quickSort(nums, pivot + 1, end);
+        }
     }
 
     // 这里取end 即最后一个数为pivot，因为取中点，中点可能已经被swap了，之后位置不确定 
