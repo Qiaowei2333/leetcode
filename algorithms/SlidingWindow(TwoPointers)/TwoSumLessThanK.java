@@ -1,4 +1,4 @@
-// lt 1099
+// lc 1099
 import java.util.*;
 
 public class TwoSumLessThanK {
