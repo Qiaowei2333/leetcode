@@ -1,7 +1,8 @@
 // lc 18 拓展 nums 里面找所有 和等于target的，不重复的，k个数字 的组合
 import java.util.*;
 public class KSum {
-    // k >=2
+    //time For 4-sum, it is O(N^3); for k-sum, it is O(N^(k-1)).
+    // NOTE: k >=2
     public List<List<Integer>> KNumberSum(int[] nums, int target, int k) {
         Arrays.sort(nums);
         return kSumHelper(nums, target, k, 0);
@@ -10,7 +11,6 @@ public class KSum {
     // From index [start] to [nums.length - 1], find k numbers sum to target
     private List<List<Integer>> kSumHelper(int[] nums, int target, int k, int start) {
         List<List<Integer>> res = new ArrayList<>();
-        if (nums.length - start < k) return res;
         if (k == 2) {
             int l = start, r = nums.length - 1;
             while (l < r) {
@@ -35,7 +35,7 @@ public class KSum {
             return res;
         } 
         else {
-            for (int i = start; i < nums.length; i++) {
+            for (int i = start; i < nums.length - (k - 1); i++) {
                 if (i != start && nums[i] == nums[i - 1]) continue;
                 List<List<Integer>> tempRes = kSumHelper(nums, target - nums[i], k - 1, i + 1);
                 if (!tempRes.isEmpty()) {
@@ -51,7 +51,7 @@ public class KSum {
 
     public static void main(String[] args) {
         KSum s = new KSum();
-        List<List<Integer>> res = s.KNumberSum(new int[]{1, 0, -1, 0, -2, 2}, 0, 4);
+        List<List<Integer>> res = s.KNumberSum(new int[]{1}, 1, 1); // not a eligible input. k must >= 2
         for (List<Integer> list : res) {
             System.out.println(list);
         }
