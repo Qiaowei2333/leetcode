@@ -12,7 +12,7 @@
 public class KthLargestElementInAnArray {
     public int findKthLargest(int[] nums, int k) {
         int start = 0, end = nums.length - 1;
-        while (start <= end) {
+        while (start <= end) {// start == end 是为了 [1]，k = 1的情况， 如果没有等号，会返回-1
             int pivotIndex = partition(nums, start, end);
             if (pivotIndex == k - 1) {
                 return nums[pivotIndex];

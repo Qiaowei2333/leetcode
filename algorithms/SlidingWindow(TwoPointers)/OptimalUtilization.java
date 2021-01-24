@@ -2,7 +2,7 @@ import java.util.*;
 /**
  * https://leetcode.com/discuss/interview-question/373202
  */
-// similiar to lt 1099 twoSumLessThanK
+// similiar to lc 1099 twoSumLessThanK
 public class OptimalUtilization {
     public List<int[]> optimal(List<int[]> a, List<int[]> b, int target) {
         if (a == null || a.isEmpty() || b == null || b.isEmpty()) {
