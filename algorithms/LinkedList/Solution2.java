@@ -1,50 +1,26 @@
-package src.algorithms.LinkedList;
 /**
  * Definition for singly-linked list. public class ListNode { int val; ListNode
  * next; ListNode(int x) { val = x; } }
  */
 class Solution2 {
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int v1 = -1;
-        int v2 = -1;
-        int carryBit = 0;
-        ListNode l3 = new ListNode(-1);
-        ListNode head = l3;
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(-1);
+        ListNode pre = dummy;
+        int carry = 0;
         while (l1 != null || l2 != null) {
-            if (l1 != null) {
-                v1 = l1.val;
-                l1 = l1.next;
-            } else {
-                v1 = 0;
-            }
-
-            if (l2 != null) {
-                v2 = l2.val;
-                l2 = l2.next;
-            } else {
-                v2 = 0;
-            }
-
-            if (v1 + v2 + carryBit >= 10) {
-                l3.val = v1 + v2 + carryBit - 10;
-                carryBit = 1;
-            } else {
-                l3.val = v1 + v2 + carryBit;
-                carryBit = 0;
-            }
-            if (l1 == null && l2 == null) {
-                if(carryBit == 1) {
-                    l3.next = new ListNode(1);
-                }
-                return head;
-                
-            } else {
-                l3.next = new ListNode(-1);
-                l3 = l3.next;
-            }
+            int val1 = l1 != null ? l1.val : 0;
+            int val2 = l2 != null ? l2.val : 0;
+            int newVal = (val1 + val2 + carry) % 10;
+            carry = (val1 + val2 + carry) / 10;
+            ListNode cur = new ListNode(newVal);
+            pre.next = cur;
+            pre = pre.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
         }
-        return null;
-    }
+        if (carry != 0) pre.next = new ListNode(1);
+        return dummy.next;
+    } 
     
     public static void main(String[] args) throws Exception {
         ListNode l1 = new ListNode(2);
