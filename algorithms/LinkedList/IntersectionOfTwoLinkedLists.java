@@ -1,5 +1,35 @@
 // lc 160 time O(n), space O(1)
 public class IntersectionOfTwoLinkedLists {
+    // 利用环来做 
+    public ListNode getIntersectionNode1(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+        ListNode i = headA;
+        ListNode j = headB;
+        while (i.next != null) {
+            i = i.next;
+        }
+        while (j.next != null) {
+            j = j.next;
+        }
+        if (i != j) return null;
+        i.next = headB;
+        ListNode slow = headA;
+        ListNode fast = headA;
+        
+        do {
+            slow = slow.next;
+            fast = fast.next.next;
+        } while (slow != fast);
+        
+        while (slow != headA) {
+            slow = slow.next;
+            headA = headA.next;
+        }
+        i.next = null;
+        return slow;
+    }
+    
+    // 利用个数来做
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) return null;
         ListNode a = headA;

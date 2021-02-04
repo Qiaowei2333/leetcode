@@ -1,4 +1,4 @@
-// lc 92 reverse linked list 2 用了 revere nodes in k group的方法
+// lc 92 reverse linked list 2 用了 lc 25 revere nodes in k group的方法
 public class ReverseLinkedList2 {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if (head == null) {

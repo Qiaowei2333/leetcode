@@ -1,6 +1,5 @@
-package src.algorithms.LinkedList;
-
-class Solution21 {
+// lc 21
+class MergeTwoSortedLists {
     // 便于理解
     public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);

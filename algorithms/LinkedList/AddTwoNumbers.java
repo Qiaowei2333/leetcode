@@ -1,8 +1,9 @@
+// lc 2
 /**
  * Definition for singly-linked list. public class ListNode { int val; ListNode
  * next; ListNode(int x) { val = x; } }
  */
-class Solution2 {
+class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(-1);
         ListNode pre = dummy;
@@ -31,7 +32,7 @@ class Solution2 {
         l2.next = new ListNode(6);
         l2.next.next = new ListNode(4);
 
-        ListNode result = addTwoNumbers(l1, l2); 
+        ListNode result = AddTwoNumbers(l1, l2); 
         for(;result!=null; result = result.next) {
             System.out.println(result.val);
         }

@@ -1,3 +1,4 @@
+// lc 25
 import java.util.Stack;
 
 class ReverseNodesInKGroup {
@@ -40,7 +41,7 @@ class ReverseNodesInKGroup {
             }
         }
 
-        // 找到reverse 的起点终点
+        // 找到reverse 的起点终点, 一定要把n1，nk+1 都拿出来，因为随着reverse，他们会变，不要用n1.next什么都
         ListNode n1 = head.next;
         ListNode nkplus = nk.next;
 

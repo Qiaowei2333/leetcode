@@ -1,4 +1,4 @@
-// 237
+// lc 237
 public class DeleteNodeInALinkedList {
     public void deleteNode(ListNode node) {
         node.val = node.next.val;
