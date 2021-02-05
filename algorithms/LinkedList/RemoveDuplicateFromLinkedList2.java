@@ -1,4 +1,4 @@
-// lc82
+// lc 82
 public class RemoveDuplicateFromLinkedList2 {
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null) {

@@ -18,4 +18,9 @@ public class LongestSubstringWithoutRepeatingCharacters {
         }
         return max;
     }
+    public static void main(String[] args) {
+        LongestSubstringWithoutRepeatingCharacters s = new LongestSubstringWithoutRepeatingCharacters();
+        int res = s.lengthOfLongestSubstring("abcb");
+        System.out.println(res);
+    }
 }

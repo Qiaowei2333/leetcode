@@ -1,4 +1,4 @@
-// lc 109 借鉴了merge sort，找中点然后左右递归处理， 然后merge
+// lc 109 借鉴了merge sort，找中点然后左右递归处理， 然后merge 
 public class ConvertSortedListToBinarySearchTree {
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) return null;

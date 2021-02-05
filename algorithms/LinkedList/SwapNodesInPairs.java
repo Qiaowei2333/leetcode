@@ -1,4 +1,4 @@
-// lc 24 
+// lc 24  
 public class SwapNodesInPairs {
     // iterative
     public ListNode swapPairs(ListNode head) {
@@ -30,7 +30,7 @@ public class SwapNodesInPairs {
         return dummy.next;
     }
 
-    // recursive
+    // recursive time O(n)   space O(n) stack使用空间
     public ListNode swapPairs1(ListNode head) {
         if (head == null || head.next == null) {
             return head;

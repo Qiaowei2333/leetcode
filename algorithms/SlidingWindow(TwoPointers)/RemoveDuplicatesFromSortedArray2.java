@@ -3,21 +3,22 @@
 public class RemoveDuplicatesFromSortedArray2 {
     public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
-        if (nums.length < 3) return nums.length;
-        int slow = 1, fast = 1, repeat = 1;
-        while (fast < nums.length) {
-            if (nums[fast] == nums[fast - 1]) {
-                repeat++;
+        if (nums.length <= 2) return nums.length;
+        int l = 1;
+        int count = 1;
+        for (int r = 1; r < nums.length; r++) {
+            if (nums[r] == nums[r - 1]) {
+                count++;
             }
             else {
-                repeat = 1;
+                count = 1;
             }
-            if (repeat <= 2) {
-                nums[slow++] = nums[fast];
+            if (count <= 2) {
+                nums[l] = nums[r];
+                l++;
             }
-            fast++;
         }
-        return slow;
+        return l;
     }
 
     public static void main(String[] args) {
