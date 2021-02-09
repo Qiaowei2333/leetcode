@@ -17,6 +17,20 @@ public class Fibonacci {
         return dp[n - 1];
     }
 
+    // dp  time O(n)  space O(1)
+    static public int Fibonacci2(int n) {
+        if (n == 0 || n == 1) return n;
+        int pre2 = 0;
+        int pre1 = 1;
+        int res = 0;
+        for (int i = 2; i <= n; i++) {
+            res = pre2 + pre1;
+            pre2 = pre1;
+            pre1 = res;
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         int res = nthNumberInFibonacciDP(2);
         System.out.println(res);
