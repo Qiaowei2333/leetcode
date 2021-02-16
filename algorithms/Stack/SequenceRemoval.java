@@ -62,7 +62,7 @@ public class SequenceRemoval {
     }
 
     public static void main(String[] args) {
-        List<Integer> input = new ArrayList<>(Arrays.asList(1,3,1,2,2,1,3));
+        List<Integer> input = new ArrayList<>(Arrays.asList(0,1,0,3,2,3));
         List<Integer> res = findSubsequence(input);
         System.out.println(res);
     }
