@@ -1,4 +1,4 @@
-// lc 300
+// lc 300 https://www.youtube.com/watch?v=l2rCz7skAlk&ab_channel=HuaHua
 import java.util.*;
 public class LongestIncreasingSubsequence {
     // dp + greedy (结尾的数越小越好) + binary search， 本质上是patience sorting
