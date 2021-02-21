@@ -1,7 +1,7 @@
 // lc 354 思路借鉴了lc 300  LIS
 import java.util.*;
 public class RussianDollEnvelopes {
-    // dp - O(nlogn)
+    // dp + greedy + binary search  sol - O(nlogn)
     public int maxEnvelopes1(int[][] envelopes) {
         Arrays.sort(envelopes, (a, b) -> {
             if (a[0] == b[0]) {
