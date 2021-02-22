@@ -1,6 +1,7 @@
 import java.util.*;
 // lc 78,  lc 90
 class Subset {
+    // time O(2^n)
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         List<Integer> list = new ArrayList<Integer>();
