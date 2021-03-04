@@ -11,11 +11,11 @@ public class BurstBalloons {
         }
         coins[0] = 1;
         coins[n++] = 1;
-        int[][] dp = new int[n][n];
-        for (int k = 2; k < n; ++k) { // k is distance btw left and right = right - left
-            for (int left = 0; left < n - k; ++left) {
-                int right = left + k;
-                for (int i = left + 1; i < right; ++i)
+        int[][] dp = new int[n][n]; // dp[left][right]: coins obtained from bursting all the balloons between index left and right (not including left or right)
+        for (int dis = 2; dis < n; dis++) { // dis is distance btw left and right, dis = right - left
+            for (int left = 0; left + dis < n; left++) { 
+                int right = left + dis;
+                for (int i = left + 1; i < right; i++)  // i is the index last bursted between (left, right)
                     dp[left][right] = Math.max(dp[left][right], 
                     coins[left] * coins[i] * coins[right] + dp[left][i] + dp[i][right]);
             }
