@@ -1,36 +1,43 @@
 import java.util.*;
 public class FrogJump {
     // dfs + memorization
+    Set<Integer> set = new HashSet<>();
+    Set<String> bad = new HashSet<>();
     public boolean canCross(int[] stones) {
-        Map<Integer, Integer> map = new HashMap<>();
-        Set<String> bad = new HashSet<>();
+        if (stones[1] != 1) return false;
+
         for (int stone : stones) {
-            map.put(stone, map.getOrDefault(stone, 0) + 1);
+            set.add(stone);
         }
-        return dfs(0, 1, stones[stones.length - 1], map, bad);
+        int target = stones[stones.length - 1];
+        return dfs(stones, target, 1, 1);
     }
     
-    private boolean dfs(int pos, int jump, int target, Map<Integer, Integer> map, Set<String> bad) {
-        String key = "pos" + pos + "jump" + jump;
-        if (bad.contains(key)) return false;
-        int nextPos = pos + jump;
-        if (nextPos == target) return true;
-        if (!map.containsKey(nextPos) || map.get(nextPos) == 0) {
-            bad.add(key);
-            return false;
+    private boolean dfs(int[] stones, int target, int cur, int lastJump) {
+        String curStr = "" + lastJump + "," + cur;
+        if (target == cur) return true;
+        if (bad.contains(curStr)) return false;
+        int nextJump1 = lastJump - 1;
+        int nextJump2 = lastJump;
+        int nextJump3 = lastJump + 1;
+        
+        int next1 = cur + nextJump1;
+        int next2 = cur + nextJump2;
+        int next3 = cur + nextJump3;
+        
+        if (nextJump1 >= 1 && set.contains(next1)) {
+            if (dfs(stones, target, next1, nextJump1)) return true;
         }
         
-        for (int i = -1; i <= 1; i++) {
-            if (jump + i > 0) {
-                map.put(nextPos, map.get(nextPos) - 1);
-                if (dfs(nextPos, jump + i, target, map, bad)) {
-                    return true;
-                }
-                map.put(nextPos, map.get(nextPos) + 1);
-            }
+        if (set.contains(next2)) {
+            if (dfs(stones, target, next2, nextJump2)) return true;
         }
         
-        bad.add(key);
+        if (set.contains(next3)) {
+            if (dfs(stones, target, next3, nextJump3)) return true;
+        }
+        
+        bad.add(curStr);
         return false;
     }
 
