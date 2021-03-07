@@ -15,8 +15,8 @@ public class JumpGame2 {
             if (i == switchPoint) {
                 switchPoint = rightMost;
                 jumps++;
-                if (switchPoint == nums.length - 1) {
-                    break; // in case when reaching the last element, which is also the swtiching point, jumps will be incremented.
+                if (rightMost == nums.length - 1) {
+                    break; // 发现下一个切换点已经超过了最后一个点了
                 }
             }
         }
