@@ -52,29 +52,35 @@ public class LongestIncreasingSubsequence {
     // sol - brute force O(2^n)
     private int len = 0;
     public int lengthOfLIS(int[] nums) {
-        findAllSubsequences(nums, 0, nums.length - 1);
+        findAllIncreasingSubsequences(nums, 0, nums.length - 1);
         return len;
     }
     
-    public List<List<Integer>> findAllSubsequences(int[] nums, int start, int end) {
+    public List<List<Integer>> findAllIncreasingSubsequences(int[] nums, int start, int end) {
         List<List<Integer>> res = new LinkedList<>();
         if (start == end) {
-            res.add(new LinkedList<>());
-            List<Integer> temp = new LinkedList<>(Arrays.asList(nums[start]));
+            res.add(new LinkedList<>());// 加入[]，表示不选当前值
+            List<Integer> temp = new LinkedList<>(Arrays.asList(nums[start])); // 选当前值
             len = Math.max(len, temp.size());
             res.add(temp);
             return res;
         }
-        List<List<Integer>> subRes = findAllSubsequences(nums, start + 1, end);
+        List<List<Integer>> subRes = findAllIncreasingSubsequences(nums, start + 1, end);
         for (List<Integer> list : subRes) {
-            List<Integer> newlist = new LinkedList<>(list);
-            newlist.add(0, nums[start]);
-            res.add(list);
-            if (newlist.size() == 1 || newlist.get(0) < newlist.get(1)) {
+            res.add(list); // start + 1 开始的lic，要加进result
+            if (list.size() == 0 || nums[start] < list.get(0)) { // start开始的要判断是不是第一个数，或者递增
+                List<Integer> newlist = new LinkedList<>(list);
+                newlist.add(0, nums[start]);
                 res.add(newlist);
                 len = Math.max(len, newlist.size());
             }
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        LongestIncreasingSubsequence s = new LongestIncreasingSubsequence();
+        int res = s.lengthOfLIS(new int[]{1,0,2,3,1});
+        System.out.println(res);
     }
 }
