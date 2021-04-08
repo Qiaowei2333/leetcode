@@ -3,7 +3,7 @@ import java.util.*;
 public class LongestIncreasingSubsequence {
     // dp + greedy (结尾的数越小越好) + binary search， 本质上是patience sorting
     // time O(nlogn)   space O(n)
-    // dp[i] 含义 - the smallest ending number of a subsequence that has length i + 1
+    // dp[i] 含义 - the smallest ending number of a LIS that has length i + 1
     public int lengthOfLIS2(int[] nums) {
         List<Integer> dp = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
