@@ -25,24 +25,43 @@ public class LongestCommonSubsequence {
         return dp[n][m];
     }
 
-    // divide and conquer sol - TLE 需要加上 memorization 有时间再了解
+    // divide and conquer sol - TLE 需要加上 memorization 
     // https://leetcode.com/problems/longest-common-subsequence/discuss/559027/For-those-who-struggling-with-DP
-    public int longestCommonSubsequenceDC(String s1, String s2) {
-        if (s1.isEmpty() || s2.isEmpty()) return 0;
+    // time: O(m*n)  dfs + memo
+    public int longestCommonSubsequence(String s1, String s2) {
+        int[][] dp = new int[s1.length() + 1][s2.length() + 1];
+        for (int i = 0; i <= s1.length(); i++) {
+            for (int j = 0; j <= s2.length(); j++) {
+                dp[i][j] = -1;
+            }
+        }
+        return longestCommonSubsequenceDC(s1, s2, dp);
+    }
+    
+    public int longestCommonSubsequenceDC(String s1, String s2, int[][] dp) {
         int n = s1.length();
         int m = s2.length();
+        if (dp[n][m] != -1) return dp[n][m];
+
+        if (n == 0 || m == 0) {
+            dp[n][m] = 0;
+            return 0;
+        }
+
         String s1MnsOne = s1.substring(0, n - 1);
         String s2MnsOne = s2.substring(0, m - 1);
         if (s1.charAt(n - 1) == s2.charAt(m - 1)) {
-            return longestCommonSubsequenceDC(s1MnsOne, s2MnsOne) + 1;
+            dp[n][m] = longestCommonSubsequenceDC(s1MnsOne, s2MnsOne, dp) + 1;
         } 
         else {
-            return Math.max(longestCommonSubsequenceDC(s1MnsOne, s2), longestCommonSubsequenceDC(s1, s2MnsOne));
+            dp[n][m] = Math.max(longestCommonSubsequenceDC(s1MnsOne, s2, dp), longestCommonSubsequenceDC(s1, s2MnsOne, dp));
         }
+        return dp[n][m];
     }
+
     public static void main(String[] args) {
         LongestCommonSubsequence s = new LongestCommonSubsequence();
-        int res = s.longestCommonSubsequenceDC("acd", "abcde");
+        int res = s.longestCommonSubsequence("abc", "d");
         System.out.println(res);
     }
 }
