@@ -1,3 +1,4 @@
+import java.util.*;
 // lc 329
 public class LongestIncreasingPathInAMatrix {
     // 复习的时候看sol2
@@ -78,6 +79,59 @@ public class LongestIncreasingPathInAMatrix {
         }
         dp[i][j] = max;
         return max;
+    }
+
+    // sol3: Topological sort time O(m * n)
+    // https://leetcode.com/problems/longest-increasing-path-in-a-matrix/discuss/514017/Java-DFS-and-BFS
+    public int longestIncreasingPathBFS(int[][] A) {
+        //        return dfs_solution(A);
+        return bfs_solution(A);
+    }
+
+    private int bfs_solution(int[][] A) {
+        int m = A.length;
+        int n = A[0].length;
+        int res = 0;
+        int[] indegrees = new int[m * n];
+        List<Integer>[] G = new List[m * n];
+        for (int i = 0; i < m * n; i++) {
+            G[i] = new ArrayList<>();
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int k = i * n + j;
+                for (int[] dir : dirs) {
+                    int nbX = i + dir[0];
+                    int nbY = j + dir[1];
+                    if (nbX >= 0 && nbX < m && nbY >= 0 && nbY < n && A[nbX][nbY] > A[i][j]) {
+                        indegrees[nbX * n + nbY]++;
+                        G[k].add(nbX * n + nbY); // add edges to this vertex
+                    }
+                }
+            }
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < m * n; i++) {
+            if (indegrees[i] == 0) 
+                queue.offer(i);
+        }
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int idx = queue.poll();
+                for (int nb : G[idx]) {
+                    indegrees[nb]--;
+                    if (indegrees[nb] == 0) 
+                        queue.offer(nb);
+                }
+            }
+            res++;
+        }
+
+        return res;
     }
 
     public static void main(String[] args) {
