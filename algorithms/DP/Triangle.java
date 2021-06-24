@@ -21,7 +21,7 @@ public class Triangle {
         return res;
     }
 
-    // dp sol - 2d dp array
+    // dp sol - 2d dp array - dp[i][j] - 从i，j出发到最底的 min path sum
     public int minimumTotalDP(List<List<Integer>> triangle) {
         int rows = triangle.size();
         int cols = triangle.get(rows - 1).size();
