@@ -20,27 +20,32 @@ public class WordBreak {
 
     // time O(n^2) space O(n)
     // dfs + memorization  花花解法
+    static Map<String, Boolean> memo = new HashMap<>();
     public static boolean wordBreak(String s, List<String> wordDict) {
-        Set<String> dic = new HashSet<>();
-        Map<String, Boolean> mem = new HashMap<>();
-        for (String word : wordDict) dic.add(word); 
-        return helper(s, dic, mem);
-    }
-
-    private static boolean helper(String s, Set<String> dic, Map<String, Boolean> mem) {
-        if (mem.containsKey(s)) return mem.get(s);
-        if (dic.contains(s)) return true;
-        if (s.length() == 1) {
-            if (dic.contains(s)) return true;
-            else return false;
+        Set<String> set = new HashSet<>();
+        for (String word : wordDict) {
+            set.add(word);    
         }
-        for (int i = 1; i < s.length(); i++) {
-            String leftStr = s.substring(0, i);
-            String rightStr = s.substring(i);
-            boolean left = helper(leftStr, dic, mem);
-            mem.put(leftStr, left);
-            boolean right = dic.contains(rightStr);
-            if (left && right) return true; 
+        
+        return wordBreakHelper(s, set);
+    }
+    public static boolean wordBreakHelper(String s, Set<String> set) {
+        if (s.isEmpty()) return true;
+        if (set.contains(s)) return true;
+        if (memo.containsKey(s)) return memo.get(s);
+        int l = s.length();
+        for (int i = 1; i <= l; i++) {
+            String leftSub = s.substring(0, i);
+            String rightSub = s.substring(i);
+            if (set.contains(leftSub)) {
+                boolean rightRes = wordBreakHelper(rightSub, set);
+                if (rightRes) {
+                    return true;    
+                }
+                else {
+                    memo.put(rightSub, false);
+                }    
+            }
         }
         return false;
     } 
