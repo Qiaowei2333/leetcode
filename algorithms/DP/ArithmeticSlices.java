@@ -3,7 +3,7 @@ public class ArithmeticSlices {
     public int numberOfArithmeticSlices(int[] nums) {
         int len = nums.length;
         if (len == 1 || len == 2) return 0;
-        int[] dp = new int[len];
+        int[] dp = new int[len]; // dp[i] - 到i为止的the number of arithmetic subarrays 
         int start = 0;
         int diff = nums[1] - nums[0];
         for (int i = 2; i < len; i++) {
