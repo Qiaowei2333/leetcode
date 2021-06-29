@@ -1,22 +1,21 @@
 // lc 413 不算高频
 public class ArithmeticSlices {
-    public int numberOfArithmeticSlices(int[] A) {
-        if (A == null || A.length < 3) return 0;
-        int diff = A[1] - A[0];
-        int res = 0;
-        int count = 1;
-        for (int i = 1; i < A.length; i++) {
-            if (A[i] - A[i - 1] == diff) { // dp思想
-                count++;
-                if (count >= 3) {
-                    res += count - 2;
-                }
+    public int numberOfArithmeticSlices(int[] nums) {
+        int len = nums.length;
+        if (len == 1 || len == 2) return 0;
+        int[] dp = new int[len];
+        int start = 0;
+        int diff = nums[1] - nums[0];
+        for (int i = 2; i < len; i++) {
+            if (nums[i] - nums[i - 1] == diff) {
+                dp[i] = i - start - 1 + dp[i - 1];
             }
             else {
-                diff = A[i] - A[i - 1];
-                count = 2;
+                start = i - 1;
+                diff = nums[i] - nums[i - 1];
+                dp[i] = dp[i - 1];
             }
         }
-        return res;
+        return dp[len - 1];
     }
 }
