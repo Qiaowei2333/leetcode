@@ -1,6 +1,34 @@
 // lc 312
 // https://leetcode.com/problems/burst-balloons/discuss/76228/Share-some-analysis-and-explanations
 public class BurstBalloons {
+    // https://leetcode.com/problems/burst-balloons/discuss/76228/Share-some-analysis-and-explanations
+    // sol2 dfs + memo, O(n^3), 复习看这个
+    public int maxCoinsDFS(int[] nums) {
+        int n = nums.length; 
+        int[] newNums = new int[n + 2];
+        int i = 1;
+        for (int num : nums) {
+            if (num != 0) {
+                newNums[i] = num;
+                i++;
+            }
+        }
+        newNums[0] = 1;
+        newNums[i++] = 1; // i is valid length of newNums, every element is not zero
+        int[][] dp = new int[i][i];
+        return burst(0, i - 1, newNums, dp);
+    }
+    
+    public int burst(int start, int end, int[] nums, int[][] dp) { // burst all balloons between start to end (exclude start and end), what are the max coins
+        if (end - start == 1) return 0;
+        if (dp[start][end] != 0) return dp[start][end];
+        int max = 0;
+        for (int i = start + 1; i < end; i++) {
+            max = Math.max(max, nums[start] * nums[i] * nums[end] + burst(start, i, nums, dp) + burst(i, end, nums, dp));
+        }
+        dp[start][end] = max;
+        return max;
+    }
     public int maxCoins(int[] nums) {
         // 篮子王解法
         // remove 0, add padding 1 
