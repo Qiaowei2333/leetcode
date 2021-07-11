@@ -15,7 +15,7 @@ public class JumpGame2 {
             if (i == switchPoint) {
                 switchPoint = rightMost;
                 jumps++;
-                if (rightMost == nums.length - 1) {
+                if (rightMost >= nums.length - 1) {
                     break; // 发现下一个切换点已经超过了最后一个点了
                 }
             }
@@ -26,7 +26,7 @@ public class JumpGame2 {
     // recursion sol  time: O(k^n) n - nums.length, k - avg steps of each nums
     public int jump2(int[] nums, int start, int end) { // jump2含义 - 从start到end跳过去的min steps
         if (start >= end) return 0;
-        int res = Integer.MAX_VALUE / 2;
+        int res = Integer.MAX_VALUE / 2; // 假如nums=[0, 1, 4] 如果res = Integer.MAX_VALUE， return 的结果是最大整数，因为第一个是0，一步都走不了，永远到不了end，最大整数返回后加一就变成负数了
         for (int i = start + 1; i <= start + nums[start] && i <= end; i++) {
             res = Math.min(res, 1 + jump2(nums, i, end));
         }
