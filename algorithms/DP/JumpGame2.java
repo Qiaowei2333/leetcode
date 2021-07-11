@@ -7,7 +7,7 @@ public class JumpGame2 {
     // 将问题转化为BFS的问题来理解，比greedy好理解
     public int jump1(int[] nums) {
         if (nums.length < 2) return 0; // [0] res should be 0
-        int switchPoint = 0;
+        int switchPoint = 0; // 第一个switchingpoint是0，第一步必须在0跨出去
         int rightMost = 0;
         int jumps = 0;
         for (int i = 0; i < nums.length; i++) {
