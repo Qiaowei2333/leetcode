@@ -7,7 +7,9 @@ public class BinarySearchInStreamData {
             left = right;
             right *= 2;
         }
-       // left < target, right >= target
+       //在while循环之后 left <= target, right >= target， 保证了target在left，right之间
+       //特殊情况： 假如只有一个数[0] left = 0， right = 1， target = 0, 此时reader.get(right) = 2^31 - 1
+       //依然满足 left <= target， right >= target
         return binarySearch(reader, target, left, right);
     }
     
