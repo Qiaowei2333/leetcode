@@ -1,7 +1,7 @@
 // lc 240
 public class SearchA2DMatrix2 {
-    // sol2: time O(log(m*n))
-    // https://www.youtube.com/watch?v=g4Qy83toSzc&ab_channel=happygirlzt
+    // sol2: time O(m + n)
+    // https://leetcode.com/problems/search-a-2d-matrix-ii/discuss/66140/My-concise-O(m%2Bn)-Java-solution
     public boolean searchMatrix2(int[][] matrix, int target) {
         int m = matrix.length;
         int n = matrix[0].length;
