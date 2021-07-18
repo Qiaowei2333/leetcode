@@ -6,7 +6,7 @@ public class SearchA2DMatrix2 {
         int m = matrix.length;
         int n = matrix[0].length;
         int curRow = 0;
-        int curCol = n - 1;
+        int curCol = n - 1; // 可以取右上，或者左下为起始点，每次淘汰一行或者一列
         while (curRow < m && curCol >= 0) {
             if (matrix[curRow][curCol] == target) return true;
             if (matrix[curRow][curCol] > target) {
