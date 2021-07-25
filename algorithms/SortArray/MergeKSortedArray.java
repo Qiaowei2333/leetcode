@@ -1,6 +1,41 @@
 // fb onsite 思路借鉴 lc 23 MergeKSortedLists
 import java.util.*;
 public class MergeKSortedArray {
+    // merge sort
+    public int[] mergeKSortedArrays2(int[][] arrays) {
+        return mergeKSortedArrays2(arrays, 0, arrays.length - 1);
+    }
+
+    private int[] mergeKSortedArrays2(int[][] arrays, int start, int end) {
+        if (start > end) return null;
+        if (start == end) return arrays[start];
+        int mid = (start + end) / 2;
+        int[] leftSorted = mergeKSortedArrays2(arrays, start, mid);
+        int[] rightSorted = mergeKSortedArrays2(arrays, mid + 1, end);
+        return merge(leftSorted, rightSorted);
+    }
+
+    private int[] merge(int[] nums1, int[] nums2) {
+        int[] res = new int[nums1.length + nums2.length];
+        int i = 0, j = 0, k = 0;
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                res[k++] = nums1[i++];
+            }
+            else {
+                res[k++] = nums2[j++];
+            }
+        }
+        while (i < nums1.length) {
+            res[k++] = nums1[i++];
+        }
+        while (j < nums2.length) {
+            res[k++] = nums2[j++];
+        }
+        return res;
+    }
+
+
     // min heap  time O(nk*logk)   space O(nk)   k: number of lists, n: average length of each list
     public int[] mergeKSortedArrays(int[][] arrays) {
         if (arrays == null || arrays.length == 0 || arrays[0].length == 0) return new int[0];
@@ -39,11 +74,8 @@ public class MergeKSortedArray {
 
     public static void main(String[] args) {
         MergeKSortedArray s = new MergeKSortedArray();
-        int[][] input = {{1, 10, 11, 15},
-                         {2,  4,  9, 14},
-                         {5,  6,  8, 16},
-                         {3,  7, 12, 13}};
-        int[] res = s.mergeKSortedArrays(input);
+        int[][] input = {};
+        int[] res = s.mergeKSortedArrays2(input);
         System.out.println(Arrays.toString(res));
     }
 }
