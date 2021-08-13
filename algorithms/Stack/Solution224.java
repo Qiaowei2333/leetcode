@@ -1,6 +1,7 @@
 // lc 224 https://www.youtube.com/watch?v=081AqOuasw0&t=316s&ab_channel=JessicaLin
 import java.util.Stack;
-public class Solution224 {	
+public class Solution224 {
+	// time O(n), space O(n)	
 	public static int calculate(String s) {
 		int sign = 1;
 		int sum = 0;
