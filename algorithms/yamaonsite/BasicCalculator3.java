@@ -15,7 +15,7 @@ public class BasicCalculator3 {
 				}
 				i--;
 			}
-            if (s.charAt(i) == '(') {
+            else if (s.charAt(i) == '(') {
                 int left = 1;
                 int j = i + 1;
                 while (left != 0) {
@@ -27,10 +27,10 @@ public class BasicCalculator3 {
                     }
                     j++;
                 }
-                num = calculate(s.substring(i + 1, j));
-                i = j - 1;
+                num = calculate(s.substring(i + 1, j - 1)); // j - 1就是最后一个)所在的位置，截取是括号里的string，不含括号，作为一下迭代的input string
+                i = j - 1; // i在最后一个)的位置，保证for loop的下一个循环紧接在）后继续，如果i = j，下一个循环会skip掉字符的
             }
-            if (s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*' || s.charAt(i) == '/') {
+            else if (s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*' || s.charAt(i) == '/') {
                 if (lastSign == '+') {
                     stack.push(num);
                 }
@@ -48,6 +48,7 @@ public class BasicCalculator3 {
             }
 		}
         
+        // 循环出来之后要再判断一次，因为最后没有符号来计算当前的数了
         if (lastSign == '+') {
             stack.push(num);
         }

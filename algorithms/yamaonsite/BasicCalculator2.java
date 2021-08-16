@@ -13,9 +13,9 @@ public class BasicCalculator2 {
 					num = num * 10 + s.charAt(i) - '0';
 					i++;
 				}
-				i--;
+				i--; // 保证i不出界 并且i在最后一个数字上
 			}
-            if (s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*' || s.charAt(i) == '/') {
+            else if (s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*' || s.charAt(i) == '/') {
                 if (lastSign == '+') {
                     stack.push(num);
                 }
