@@ -88,7 +88,7 @@ public class DecodeString {
     public static void main(String[] args) {
         DecodeString s = new DecodeString();
         String input = "3[a2[c]]";
-        String result = s.decodeStringIter(input);
+        String result = s.decodeString(input);
         System.out.println(result);
     }
 }
