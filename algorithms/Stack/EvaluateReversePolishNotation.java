@@ -1,8 +1,6 @@
-package src.algorithms.Stack;
-
+// lc 150
 import java.util.Stack;
-
-class Solution105 {
+class EvaluateReversePolishNotation {
     public static int evalRPN(String[] tokens) {
         Stack<Integer> s = new Stack<Integer>();
         int a, b;
