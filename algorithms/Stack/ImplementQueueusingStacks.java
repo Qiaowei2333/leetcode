@@ -1,10 +1,9 @@
-package src.algorithms.Stack;
-
+// lc 232
 import java.util.Stack;
 
-public class Solution232 {
+public class ImplementQueueusingStacks {
 	public static void main(String[] args) throws Exception {
-		Solution232 s = new Solution232();
+		ImplementQueueusingStacks s = new ImplementQueueusingStacks();
 		MyQueue q = s.new MyQueue();
 		q.push(1);
 		q.push(2);
