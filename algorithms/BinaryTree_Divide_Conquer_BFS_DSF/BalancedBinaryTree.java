@@ -30,14 +30,7 @@ public class BalancedBinaryTree {
             value = x; 
         }
     }
-    static class TreeState {
-        int height;
-        boolean isBalanced;
-        public TreeState(int height, boolean isBalanced) {
-            this.height = height;
-            this.isBalanced = isBalanced;
-        }
-    }
+
     /**
      * @param root: The root of binary tree.
      * @return: True if this Binary tree is Balanced, or false.
@@ -76,5 +69,14 @@ public class BalancedBinaryTree {
         BalancedBinaryTree s = new BalancedBinaryTree();
         boolean result = s.isBalanced(null);
         System.out.println(result);  
+    }
+}
+
+class TreeState {
+    int height;
+    boolean isBalanced;
+    public TreeState(int height, boolean isBalanced) {
+        this.height = height;
+        this.isBalanced = isBalanced;
     }
 }
