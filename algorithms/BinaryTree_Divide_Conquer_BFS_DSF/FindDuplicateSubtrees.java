@@ -6,6 +6,10 @@
 import java.util.*;
 public class FindDuplicateSubtrees {
     // time O(n^2)
+    // 注意 这里用postorder是因为只有左右都遍历过了，才能确定当前root的string
+    // 不然假如右边没走 怎么知道右边是什么，更不能确定是不是有一样的树了
+    // 还有题目说的是for each kind of duplicate subtrees，所以要用map记录同样的subtree出现了几次
+    // 只有map记录的频率等于2时才放入res，不需要放重复的，因为是each kind
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         List<TreeNode> res = new ArrayList<>();
         Map<String, Integer> map = new HashMap<>();
