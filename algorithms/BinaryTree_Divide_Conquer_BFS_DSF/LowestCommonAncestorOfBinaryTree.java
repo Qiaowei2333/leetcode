@@ -1,4 +1,4 @@
-// lint88
+// lint88 lc 236
 // https://www.youtube.com/watch?v=13m9ZCB8gjw
 // time O(n)
 public class LowestCommonAncestorOfBinaryTree {
@@ -15,7 +15,7 @@ public class LowestCommonAncestorOfBinaryTree {
         return searchForTargets(root, p, q);
     }
     
-    
+
     // function meaning: search for tg1 and tg2, then return LCA of tg1 and tg2
     // if one tg is founded, 
     //    return tg, 
