@@ -11,39 +11,27 @@ public class LowestCommonAncestorOfBinaryTree {
         }
     }
 
-// 1. root.left 的LCA 存在并且 root.right的LCA存在， 返回root
-// 2. root.left 的LCA 和 root.right的LCA只有一个存在，返回存在的那一个
-// 3. root.left 的LCA 和 root.right的LCA都不存在， 返回null
-// 4. 注意root本身是p或者q时，root自己就是LCA的结果，直接返回
-
-// sol1 此解法前提条件是p q一定存在tree 里面
-// 此函数的含义：如果p，q都存在，返回p和q的lca，如果都不存在，返回null，如果只有一个存在，返回那个本身
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || root == p || root == q) {
-            return root;
-        }
-
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-
-        if (left != null && right != null) {
-            return root;
-        }
-
-        if (left == null && right == null) {
-            return null;
-        }
-
-        return left == null ? right : left;
-        // if (left != null && right == null) {
-        //     return left;
-        // }
-
-        // if (left == null && right != null) {
-        //     return right;
-        // }
-
-        // return null;
+        return searchForTargets(root, p, q);
+    }
+    
+    
+    // function meaning: search for tg1 and tg2, then return LCA of tg1 and tg2
+    // if one tg is founded, 
+    //    return tg, 
+    // if both tgts are founded, 
+    //    return root, 
+    // else return null
+    private TreeNode searchForTargets(TreeNode root, TreeNode tg1, TreeNode tg2) {
+        if (root == null) return null;
+        if (root == tg1 || root == tg2) return root;
+        
+        TreeNode leftRes = searchForTargets(root.left, tg1, tg2);
+        TreeNode rightRes = searchForTargets(root.right, tg1, tg2);
+        
+        if (leftRes != null && rightRes != null) return root;
+        
+        return leftRes == null ? rightRes : leftRes;
     }
 
 
