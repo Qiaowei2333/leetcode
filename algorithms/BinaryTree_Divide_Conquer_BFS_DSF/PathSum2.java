@@ -1,25 +1,23 @@
 // lc 113
 import java.util.*;
 public class PathSum2 {
-    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer> list = new LinkedList<>();
-        traverse(root, sum, 0, list, res);
+        List<Integer> list = new ArrayList<>();
+        topDown(root, targetSum, list, res);
         return res;
     }
     
-    private void traverse(TreeNode root, int target, int curSum, List<Integer> list, List<List<Integer>> res) {
+    private void topDown(TreeNode root, int targetSum, List<Integer> list, List<List<Integer>> res) {
         if (root == null) return;
-        curSum += root.val;
+        
         list.add(root.val);
-        traverse(root.left, target, curSum, list, res);
-        traverse(root.right, target, curSum, list, res);
-        if (root.right == null && root.left == null) {
-            if (curSum == target) {
-                res.add(new ArrayList<>(list));
-            }
+        topDown(root.left, targetSum - root.val, list, res);
+        topDown(root.right, targetSum - root.val, list, res);
+
+        if (root.left == null && root.right == null && root.val == targetSum) {
+            res.add(new ArrayList<>(list));
         }
-        curSum -= root.val;
         list.remove(list.size() - 1);
-    } 
+    }
 }
