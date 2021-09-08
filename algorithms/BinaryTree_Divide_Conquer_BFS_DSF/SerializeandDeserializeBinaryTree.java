@@ -33,6 +33,7 @@ public class SerializeandDeserializeBinaryTree {
     }
 
     // Decodes your encoded data to tree.
+    // 这里不用queue，用linkedlist也行，每次removeFirst from list，和queue是一样的
     public TreeNode deserialize(String data) {
         String[] dataArr = data.split(",");
         Queue<String> queue = new LinkedList<>();
