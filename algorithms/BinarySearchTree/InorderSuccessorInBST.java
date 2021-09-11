@@ -1,19 +1,20 @@
 // lc 285
 public class InorderSuccessorInBST {
-    // SOL 1 inorder traversal O(n)
+    // SOL 1 inorder traversal O(n)， 这个方法不好，看sol2和sol3
     private TreeNode prev;
     private TreeNode res;
 
-    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+    public TreeNode inorderSuccessor1(TreeNode root, TreeNode p) {
         traverse(root, p);
         return res;
     }
 
     private void traverse(TreeNode root, TreeNode p) {
-        if (root == null || res != null) return;
+        if (root == null || res != null) return; // 加上res ！= null，会让剩下的遍历提前返回
         traverse(root.left, p);
-        if (prev == p && res == null) {
+        if (prev == p && res == null) {// 加上 res == null 保证这里只会执行一次
             res = root;
+            return;
         }
         prev = root;
         traverse(root.right, p);
@@ -29,13 +30,28 @@ public class InorderSuccessorInBST {
                 succ = root;
                 root = root.left;
             }
-            else if (root.val < p.val) {
+            else { // root.val <= p.val
                 root = root.right;
             } 
-            else if (root.val == p.val) {
-                root = root.right;
-            }
         }
         return succ;
+    }
+
+    // sol 3 其实是sol2的recursion 写法 O(h)
+    public TreeNode inorderSuccessor3(TreeNode root, TreeNode p) {// find first element > p
+        if (root == null) return null;
+        
+        if (root.val <= p.val)
+            return inorderSuccessor(root.right, p); // 如果当前小于等于p.val,往右走
+        
+        else { // root.val > p.val     如果当前大于p.val, 往左走
+            TreeNode left = inorderSuccessor(root.left, p);
+            if (left == null) {
+                return root;
+            }
+            else {
+                return left;
+            }
+        }
     }
 }
