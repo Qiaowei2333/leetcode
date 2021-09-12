@@ -1,4 +1,4 @@
-// lint 11
+// lint 11, 于lc 938类似
 
 import java.util.*;
 
@@ -38,5 +38,24 @@ public class SearchRangeInBST {
         if (root.val < k2) { // // 利用 bst 特性 pruning，root.val>=k2时没必要往右走了，右边所有数必定 > k2
             helper(result, root.right, k1, k2);
         }
+    }
+
+    // divide and conquer sol
+    public List<Integer> searchRangeDC(TreeNode root, int k1, int k2) {
+        if (root == null) return new ArrayList<Integer>();
+
+        List<Integer> res = new ArrayList<>();
+
+        if (root.val > k1)
+            res.addAll(searchRange(root.left, k1, k2));
+
+        if (root.val >= k1 && root.val <= k2) {
+            res.add(root.val);
+        }
+
+        if (root.val < k2)
+            res.addAll(searchRange(root.right, k1, k2));
+
+        return res;
     }
 }
