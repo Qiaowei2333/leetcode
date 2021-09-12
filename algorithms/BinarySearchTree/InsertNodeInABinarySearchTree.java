@@ -1,21 +1,19 @@
 // lc 701
 public class InsertNodeInABinarySearchTree{
-    // O(h) recursion sol1
+    // O(h) recursion sol1 - 注意所有点的值都是unique的
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) return new TreeNode(val);
         
-        if (root.val > val) {
-            TreeNode left = insertIntoBST(root.left, val);
-            if (root.left == null) root.left = left;
-        }
-        
         if (root.val < val) {
-            TreeNode right = insertIntoBST(root.right, val);
-            if (root.right == null) root.right = right; 
+            root.right = insertIntoBST(root.right, val);
+        }
+        else {
+            root.left = insertIntoBST(root.left, val);
         }
         
         return root;
     }
+
     // O(h) iteration sol 2
     public TreeNode insertIntoBST2(TreeNode root, int val) {
         if (root == null) return new TreeNode(val);
