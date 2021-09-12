@@ -38,6 +38,8 @@ public class InorderSuccessorInBST {
     }
 
     // sol 3 其实是sol2的recursion 写法 O(h)
+    // https://leetcode.com/problems/inorder-successor-in-bst/discuss/72653/Share-my-Java-recursive-solution
+    // predecessor 写法和以下这个类似
     public TreeNode inorderSuccessor3(TreeNode root, TreeNode p) {// find first element > p
         if (root == null) return null;
         
