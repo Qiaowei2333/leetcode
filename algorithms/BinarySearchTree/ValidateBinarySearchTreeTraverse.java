@@ -2,34 +2,25 @@
 import java.util.*;
 
 public class ValidateBinarySearchTreeTraverse {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        public TreeNode(int x) {
-            val = x;
-        }
-    }
-    private boolean firstNode = true;// why we need this firstNode, to skip firstNode, beacuse firstNode with value = MIN_VALUE cannot satisfy 'preVal >= root.val'
-    private int prevVal = Integer.MIN_VALUE;
+    //  这个解法比divide & conquer好
+    long prev;
+    boolean res = true;
     public boolean isValidBST(TreeNode root) {
-        if (root == null) {
-            return true;
+        prev = Long.MIN_VALUE; // 防止 root.val == Integer.MIN_VALUE
+        inorderTraverse(root);
+        return res;
+    }
+    
+    private void inorderTraverse(TreeNode root) {
+        if (root == null || res == false) return; // res 变成 false之后，遍历就可以结束了
+        
+        inorderTraverse(root.left);
+        
+        if (prev != Long.MIN_VALUE && prev >= (long) root.val) {
+            res = false;
         }
-
-        if (!isValidBST(root.left)) {
-            return false;
-        }
-
-        if (!firstNode && prevVal >= root.val) {
-            return false;
-        }
-        firstNode = false;
-        prevVal = root.val;
-
-        if (!isValidBST(root.right)) {
-            return false;
-        }
-        return true;
+        prev = (long) root.val;
+        
+        inorderTraverse(root.right);
     }
 }
