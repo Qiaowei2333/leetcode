@@ -1,4 +1,4 @@
-// lt 133
+// lc 133
 /*
 // Definition for a Node.
 class Node {
