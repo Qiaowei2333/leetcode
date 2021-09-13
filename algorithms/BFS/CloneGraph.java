@@ -31,7 +31,7 @@ class CloneGraph {
     }
 
     public Node clone(Node node) {
-        if (node == null) return null;
+        if (node == null) return null; // input root is null
         if (map.containsKey(node)) return map.get(node);
         Node newNode = new Node(node.val);
         map.put(node, newNode);
