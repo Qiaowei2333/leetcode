@@ -2,6 +2,8 @@
 import java.util.*;
 public class AllNodesDistanceKInBinaryTree {
     // time O(n)  space O(n) n - # of nodes in tree, each node has 3 edges at most, left, right, parent
+    // build the graph, bfs traverse the graph and get all nodes at level k
+    // two ways to build the graph, dfs, bfs
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
         Map<TreeNode, List<TreeNode>> graph = new HashMap<>();
         constructGraph(root, graph);
@@ -48,6 +50,29 @@ public class AllNodesDistanceKInBinaryTree {
         if (root.right != null) {
             graph.get(root).add(root.right);
             graph.get(root.right).add(root);
+        }
+    }
+
+    private void constructGraphBFS(TreeNode root, Map<TreeNode, List<TreeNode>> map) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        map.put(root, new ArrayList<>());
+        
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            if (cur.left != null) {
+                map.put(cur.left, new ArrayList<>());
+                map.get(cur).add(cur.left);
+                map.get(cur.left).add(cur);
+                queue.offer(cur.left);
+            }
+            
+            if (cur.right != null) {
+                map.put(cur.right, new ArrayList<>());
+                map.get(cur).add(cur.right);
+                map.get(cur.right).add(cur);
+                queue.offer(cur.right);
+            } 
         }
     }
 }
