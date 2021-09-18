@@ -1,6 +1,7 @@
 // lc 127
 import java.util.*;
 public class WordLadder {
+    // 此题用greedy思想，能遇见list里面的立马放到队列里面去，能保证最后的endword，如果存在必定是最短到达
     // 1. char[] to string, 用new String(char), 别用char[].toString()
     // 2. 这里没有用到visited，是因为每次都set.remove
     // 3. time O(n * 26^l) n - wordList 里面word的个数， l - word的长度
@@ -18,7 +19,7 @@ public class WordLadder {
 
         Queue<String> queue = new LinkedList<String>();
         queue.offer(beginWord);
-        set.remove(beginWord); // if (set.contains(beginWord)) 加不加无所谓，set.remove(a), a若不存在，返回false，存在返回true
+        if (set.contains(beginWord)) set.remove(beginWord);
         int steps = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();
