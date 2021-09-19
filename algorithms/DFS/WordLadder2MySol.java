@@ -12,7 +12,8 @@ public class WordLadder2MySol {
         Map<String, Integer> visitedNodesDistanceToBegin =  new HashMap<>();
         Set<String> dict = new HashSet<>(wordList);
 
-        neighborsMapping.put(beginWord, new ArrayList<>()); // 做bfs的目的就是populate这个neighborsMapping，也就是图
+        neighborsMapping.put(beginWord, new ArrayList<>()); // 做bfs的目的就是populate这个neighborsMapping，也就是图, 不要忘记把第一个点也放进去，因为第一个点未必在 wordlist里面
+                                                            // 但依然需要知道它的所有边
         for (String str : dict) { 
             neighborsMapping.put(str, new ArrayList<>());
         }
