@@ -41,7 +41,8 @@ public class WordLadder {
                                 return steps + 1;
                             }
                             queue.offer(newStr);
-                            set.remove(newStr);
+                            set.remove(newStr); // 为什么可以remove，因为这题只在乎第一次找到target，只要有一条路径找到了就行，lc 126就不能直接删除，必须要用另外的visited set来记录，因为
+                                                // 要记录所有的最短路径
                         }
                     }
                     charArray[j] = temp;
