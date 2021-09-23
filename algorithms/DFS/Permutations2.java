@@ -1,10 +1,9 @@
 // lc 47
 import java.util.*;
-// 1. 难点在 line 26
+// 1. 难点在 line 29
 // if (i != 0 && nums[i] == nums[i - 1] && selected[i - 1]) {
 //   continue;
 // }
-// 如果不是第一个点，并且i与i-1的值相等，而且前面的已经被选过了， 比如2，1，1  假如i=2，i=1的已经被选过了，那么重复的i=2不可以被选
 public class Permutations2 {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
@@ -27,7 +26,12 @@ public class Permutations2 {
             if (selected[i]) {
                 continue;
             }
-            if ((i != 0 && nums[i] == nums[i - 1]) && selected[i - 1]) {
+            if ((i != 0 && nums[i] == nums[i - 1]) && !selected[i - 1]) {
+                //The difficulty is to handle the duplicates.
+                // With inputs as [1a, 1b, 2a],
+                // If we don't handle the duplicates, the results would be: [1a, 1b, 2a], [1b, 1a, 2a]...,
+                // so we must make sure 1a goes before 1b to avoid duplicates
+                // By using nums[i-1]==nums[i] && !used[i-1], we can make sure that 1b cannot be choosed before 1a
                 continue;
             }
             list.add(nums[i]);
@@ -40,7 +44,7 @@ public class Permutations2 {
 
     public static void main(String[] args) {
         Permutations2 s = new Permutations2();
-        int[] nums = {1, 1, 1};
+        int[] nums = {1, 1, 2};
         List<List<Integer>> result = s.permuteUnique(nums);
         System.out.println(result);
     }
