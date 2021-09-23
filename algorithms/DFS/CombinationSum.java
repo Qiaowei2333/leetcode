@@ -1,6 +1,8 @@
 //lin 135   lc 39
 import java.util.*;
 public class CombinationSum {
+    // worst case Time complexity is O(N^target) where N is a length of candidates array.
+   //  Space complexity is O(target).
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
         if (candidates == null || candidates.length == 0) {
