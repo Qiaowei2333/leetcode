@@ -3,6 +3,7 @@ import java.util.*;
 // 1. string s.substring
 // 2. String curStr = s.substring(startPos, i + 1);
 public class PalindromePartitioning {
+    // sol1 time O(n * 2^n)
     public List<List<String>> partition(String s) {
         List<List<String>> result = new ArrayList<>();
         if (s == null || s.length() == 0) {
@@ -13,7 +14,7 @@ public class PalindromePartitioning {
         return result;
     }
     
-    private void helper(String s, List<String> list, int startPos, List<List<String>> result) {
+    private void helper(String s, List<String> list, int startPos, List<List<String>> result) {// 含义 对于 string s，从 startpos开始，得到之后所有的回文串的分裂组
         if (startPos == s.length()) {
             result.add(new ArrayList<String>(list));
             return;
@@ -40,6 +41,8 @@ public class PalindromePartitioning {
         return true;
     }
 
+    // sol2 dp + dfs https://leetcode.com/problems/palindrome-partitioning/discuss/41982/Java-DP-%2B-DFS-solution
+    // O(2^n) + O(n^2) = O(2^n)
     public static void main(String[] args) {
         PalindromePartitioning s = new PalindromePartitioning();
         List<List<String>> result = s.partition("aab");
