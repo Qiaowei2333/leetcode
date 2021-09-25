@@ -17,14 +17,18 @@ public class GenerateParentheses {
             result.add(sb.toString());
             return;
         }
-        if (numL < numR || numL > n) {
-            return;
+        
+        if (numL < n) {
+            sb.append('(');
+            dfs(sb, result, numL + 1, numR, n);
+            sb.deleteCharAt(sb.length() - 1);
         }
-        sb.append('(');
-        dfs(sb, result, numL + 1, numR, n);
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append(')');
-        dfs(sb, result, numL, numR + 1, n);
-        sb.deleteCharAt(sb.length() - 1);
+ 
+        if (numL > numR) {
+            sb.append(')');
+            dfs(sb, result, numL, numR + 1, n);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+ 
     }
 }
