@@ -2,6 +2,7 @@
 // lc 300 LIS brute force解法，找到所有subsequences, 再filter其中递增的, 找到最长的递增的子序列
 import java.util.*;
 public class FindAllPossibleSubsequences {
+    // 此题解法 geeksforgeeks 上有 backtracking的解法
     // O(2^n)
     public List<List<Integer>> findAllSubsequences(int[] nums, int start, int end) {
         List<List<Integer>> res = new LinkedList<>();
