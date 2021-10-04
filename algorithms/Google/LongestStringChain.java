@@ -1,3 +1,4 @@
+import java.util.*;
 // lc 1048, 复习的时候看dfs -> dfs + memo
 public class LongestStringChain {
     // time O(n*s*s) n - number of word in words, s - avg length of word
