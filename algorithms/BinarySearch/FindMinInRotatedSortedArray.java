@@ -23,4 +23,10 @@ public class FindMinInRotatedSortedArray {
         }
         return nums[0];
     }
+
+    public static void main(String[] args) {
+        FindMinInRotatedSortedArray s = new FindMinInRotatedSortedArray();
+        int min = s.findMin(new int[]{1,2,3});
+        System.out.println(min);
+    }
 }
