@@ -4,7 +4,6 @@ public class Trie {
     TrieNode root;
     public Trie() {
         root = new TrieNode(' ');
-
     }
     // time O(k) k - length of word
     public void insert(String word) {
