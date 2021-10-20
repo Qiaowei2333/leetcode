@@ -1,3 +1,4 @@
+// lc 151
 import java.util.*;
 
 public class ReverWordsInAString {
@@ -24,9 +25,12 @@ public class ReverWordsInAString {
 
 
     public static void main(String[] args) {
+        String test = "a good   example";
+        String[] ar = test.split(" ");
+
         ReverWordsInAString s = new ReverWordsInAString();
         String ss = "1111  11 1";
-        String[] ss1 = ss.split("1");
+        String[] ss1 = ss.split(" ");
         System.out.println(ss1.length);
         for (String ss2 : ss1) {
             System.out.println("'"+ ss2 +"'");
