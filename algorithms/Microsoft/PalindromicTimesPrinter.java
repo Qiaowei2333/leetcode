@@ -1,4 +1,4 @@
-package HE;
+
 
 public class PalindromicTimesPrinter {
     public void printPalindromicTimes(int hour) {
