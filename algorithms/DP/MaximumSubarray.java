@@ -13,6 +13,18 @@ public class MaximumSubarray {
         return max;
     }
 
+    // dp time O(n) space O(1)
+    public int maxSubArrayDP2(int[] nums) {
+        int prev = nums[0]; // 以前一位为结束的最大subarray
+        int max = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            int cur = Math.max(prev + nums[i], nums[i]);
+            max = Math.max(max, cur);
+            prev = cur;
+        }
+        return max;
+    }
+
     // greedy思想   time O(n)  space O(1)
     // https://www.geeksforgeeks.org/maximum-difference-between-two-elements/
     // method2
