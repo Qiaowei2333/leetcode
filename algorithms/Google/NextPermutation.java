@@ -4,7 +4,7 @@ public class NextPermutation {
     // 思路是：从右往左，找到第一个不在递增，在下降的点，再找该点右边第一个大于该点的点，swap，然后reverse右边
     public void nextPermutation(int[] nums) {
         for (int i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] < nums[i + 1]) {
+            if (nums[i] < nums[i + 1]) {// i < i + 1, 从右往左看，i开始下降了
                 int j = nums.length - 1;
                 while (nums[j] <= nums[i]) {
                     j--;
