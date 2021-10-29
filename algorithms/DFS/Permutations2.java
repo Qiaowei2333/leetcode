@@ -17,7 +17,7 @@ public class Permutations2 {
         return result;
     }
     
-       private void dfsHelper(int[] nums, List<List<Integer>> result, List<Integer> list, boolean[] selected) {
+    private void dfsHelper(int[] nums, List<List<Integer>> result, List<Integer> list, boolean[] selected) {
         if (list.size() == nums.length) {
             result.add(new ArrayList<>(list));
             return;
@@ -44,7 +44,7 @@ public class Permutations2 {
 
     public static void main(String[] args) {
         Permutations2 s = new Permutations2();
-        int[] nums = {1, 1, 2};
+        int[] nums = {1, 1, 1, 2};
         List<List<Integer>> result = s.permuteUnique(nums);
         System.out.println(result);
     }
