@@ -92,7 +92,7 @@ public class BFSTemplate {
     }
 
 
-    ////////Dijkstra模版 所有weight都必须>=0 time complexity O(ElogV)
+    ////////Dijkstra模版 所有weight都必须>=0 time complexity O(ElogE) 为什么是logE,因为优先队列里面可能会有重复的点，最多可能和edge的数目正相关
     // 返回节点 from 到节点 to 之间的边的权重
     int weight(int from, int to);
 
