@@ -57,13 +57,15 @@ public class NetworkDelayTime {
         int res = s.networkDelayTime(times, 4, 2);
         System.out.println(res);
     }
-}
 
-class State {
-    int id;
-    int distFromStart;
-    public State(int id, int distFromStart) {
-        this.id = id;
-        this.distFromStart = distFromStart;
+    static class State {
+        int id;
+        int distFromStart;
+        public State(int id, int distFromStart) {
+            this.id = id;
+            this.distFromStart = distFromStart;
+        }
     }
 }
+
+

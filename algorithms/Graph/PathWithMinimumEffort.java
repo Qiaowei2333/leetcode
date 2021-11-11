@@ -62,13 +62,13 @@ public class PathWithMinimumEffort {
         
         return Integer.MAX_VALUE;
     }
-}
 
-class State {
-    int id;
-    int effortToStart;
-    public State(int id, int effortToStart) {
-        this.id = id;
-        this.effortToStart = effortToStart;
+    static class State {
+        int id;
+        int effortToStart;
+        public State(int id, int effortToStart) {
+            this.id = id;
+            this.effortToStart = effortToStart;
+        }
     }
 }
