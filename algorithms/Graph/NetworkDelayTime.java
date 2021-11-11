@@ -2,6 +2,8 @@
 
 import java.util.*;
 public class NetworkDelayTime {
+    // time O(eloge) e - number of edges
+    // 可能会有e个结点存在队列中
     public int networkDelayTime(int[][] times, int n, int k) {
         Map<Integer, List<int[]>> graph = new HashMap<>();
         for (int i = 1; i <= n; i++) {
