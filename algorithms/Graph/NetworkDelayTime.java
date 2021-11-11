@@ -1,5 +1,5 @@
 // lc 743
-
+// 有相图，有权值，权值>=0
 import java.util.*;
 public class NetworkDelayTime {
     // time O(eloge) e - number of edges
