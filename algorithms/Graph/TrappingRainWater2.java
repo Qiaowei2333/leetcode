@@ -1,4 +1,4 @@
-// lc 407
+// lc 407 bfs + bq
 import java.util.*;
 
 public class TrappingRainWater2 {
