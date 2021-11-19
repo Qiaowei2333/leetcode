@@ -21,7 +21,7 @@ public class MedianOfTwoSortedArraySolution3 {
             else if (l2 > r1) {
                 start1 = cut1 + 1;
             }
-            else { // l1 <= r2 && l2 <= l1
+            else { // l1 <= r2 && l2 <= r1
                 if (len % 2 == 0) {
                     return (Math.max(l1, l2) + Math.min(r1, r2)) / 2;
                 }
