@@ -1,40 +1,25 @@
 // lint610  https://yeqiuquan.blogspot.com/2017/04/lintcode-610-two-sum-difference-equals.html
 import java.util.*;
 public class TwoSumDifferenceEqualsToTarget {
-    static class Pair {
-        int val;
-        int index;
-        public Pair(int val, int index) {
-            this.val = val;
-            this.index = index;
-        }
-    }
-
-    public int[] twoSumDiff(int[] nums, int target) {
-        if (nums == null || nums.length < 2) {
-            return new int[0];
-        }
+    public int[] twoSum7(int[] nums, int target) {
+        // write your code here
         int[] res = new int[2];
-        Pair[] newArr = new Pair[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            newArr[i] = new Pair(nums[i], i);
-        }
-        Arrays.sort(newArr, (a, b) -> a.val - b.val);
-        target = Math.abs(target);
-        int l = 0, r = 0;
-        while (r < newArr.length) {
-            if (l == r) { r++; }
-            while (r < newArr.length && newArr[r].val - newArr[l].val < target) {
+        int l = 0;
+        int r = 1;
+        int n = nums.length;
+        while (l < n) {
+            while (nums[r] - nums[l] < target) {
                 r++;
             }
 
-            while (l < r && r < newArr.length && newArr[r].val - newArr[l].val >= target) {
-                if (newArr[r].val - newArr[l].val == target) {
-                    res[0] = newArr[l].index + 1;
-                    res[1] = newArr[r].index + 1;
-                    return res;
-                }
-                l++;     
+            while (nums[r] - nums[l] > target) {
+                l++;
+            }
+            if (l == r) r++;
+            if (nums[r] - nums[l] == target) {
+                res[0] = Math.min(nums[r], nums[l]);
+                res[1] = Math.max(nums[r], nums[l]);
+                break;
             }
         }
         return res;
