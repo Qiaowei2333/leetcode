@@ -14,7 +14,7 @@ public class ReorderList {
     private ListNode findMid(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
-        while (fast.next != null && fast.next.next != null) {
+        while (fast.next != null && fast.next.next != null) {// 为啥不需要考虑 fast ！= null，因为head不为null，假如fast可以走两步，那下一步肯定不是null，假如不能走，就返回了
             fast = fast.next.next;
             slow = slow.next;
         }
